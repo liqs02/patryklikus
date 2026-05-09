@@ -1,34 +1,9 @@
-const PUBLICATION = {
-  chip: "PEER-REVIEWED",
-  venue: "ECMS 2025  ·  European Conference on Modelling and Simulation",
-  title: "Analysis of Virtual Threads in Spring Applications",
-  authors: "Lead author  ·  Patryk Likus  ·  with Filip Krużel (CUT)",
-  abstract:
-    "Empirical comparison of Java 21 virtual threads against traditional platform threads in Spring REST APIs across mixes of computational work and I/O wait, throughput levels, and JVM choices.",
-  keyFinding:
-    "Virtual threads ≠ free scalability — gains depend on workload mix.",
-  cta: "Read the paper",
-  href: "https://github.com/liqs02/research/blob/master/ecms2025.pdf",
-};
-
-const POSTS = [
-  {
-    tag: "LINKEDIN POST  ·  JAVA QUIZ",
-    title: "Non-static inner class instantiation",
-    snippet:
-      "A quick quiz that surfaced how rarely we reach for non-static inner classes in modern Java.",
-    metric: "40+ reactions",
-    href: "https://www.linkedin.com/feed/update/urn:li:activity:7432017165056307201/",
-  },
-  {
-    tag: "LINKEDIN POST  ·  EXPLAINER",
-    title: "How Spring + Virtual Threads scale blocking code",
-    snippet:
-      "A walkthrough of platform vs virtual threads — write simple blocking code, get high concurrency.",
-    metric: "20+ reactions",
-    href: "https://www.linkedin.com/feed/update/urn:li:activity:7424492459734487040/",
-  },
-];
+import {
+  GITHUB_PROFILE_HREF,
+  LINKEDIN_PROFILE_HREF,
+  POSTS,
+  PUBLICATION,
+} from "./data";
 
 export default function ImpactMobile() {
   return (
@@ -67,7 +42,7 @@ export default function ImpactMobile() {
           {PUBLICATION.authors}
         </p>
         <p className="mt-3 text-[13px] leading-snug text-[#cbd5e1]/85">
-          {PUBLICATION.abstract}
+          {PUBLICATION.abstractShort}
         </p>
 
         <div className="mt-4 border-l-[3px] border-[var(--color-accent)]/60 pl-3">
@@ -116,7 +91,7 @@ export default function ImpactMobile() {
 
       <div className="mt-8 flex items-center justify-center gap-10">
         <a
-          href="https://linkedin.com/in/patryklikus"
+          href={LINKEDIN_PROFILE_HREF}
           target="_blank"
           rel="noreferrer"
           className="text-[14px] text-[var(--color-accent)]"
@@ -124,7 +99,7 @@ export default function ImpactMobile() {
           LinkedIn →
         </a>
         <a
-          href="https://github.com/liqs02"
+          href={GITHUB_PROFILE_HREF}
           target="_blank"
           rel="noreferrer"
           className="text-[14px] text-[var(--color-accent)]"

@@ -1,44 +1,5 @@
-const SOFTWARE_START_YEAR = 2021;
-const yearsWriting = `${new Date().getFullYear() - SOFTWARE_START_YEAR}+`;
-
-const STATS = [
-  {
-    value: yearsWriting,
-    label: "years writing software",
-    sublabel: `since ${SOFTWARE_START_YEAR}`,
-  },
-  {
-    value: "50K+",
-    label: "lines across private projects",
-    sublabel: "always cooking",
-  },
-  {
-    value: "10K+",
-    label: "flashcard reviews",
-    sublabel: "Anki, since mid-2025",
-  },
-];
-
-const QUOTES = [
-  {
-    theme: "SKILL",
-    body: "He had a natural talent for solving complex technical problems. In no time, Patryk mastered new technologies and applied them with precision.",
-    author: "Iwona S.",
-    role: "Senior Software Engineer",
-  },
-  {
-    theme: "PASSION",
-    body: "Working with Patryk means working with someone whose passion for programming truly stands out. He frequently brings forward ideas that reflect the latest industry trends.",
-    author: "Tomasz W.",
-    role: "Tech Leader",
-  },
-  {
-    theme: "GROWTH",
-    body: "What impressed me most is how quickly he turned initial inexperience into strength — learning from tough feedback, adapting rapidly, and consistently delivering clean, well-architected solutions.",
-    author: "Mateusz S.",
-    role: "Senior Software Engineer",
-  },
-];
+import { formatShort } from "../../lib/format";
+import { QUOTES, RECOMMENDATIONS_HREF, STATS } from "./data";
 
 export default function BeyondMobile() {
   return (
@@ -62,7 +23,8 @@ export default function BeyondMobile() {
             className="flex flex-col items-center px-2 text-center"
           >
             <span className="text-[30px] font-bold leading-none tracking-tight text-[var(--color-text)] tabular-nums">
-              {s.value}
+              {formatShort(s.value)}
+              {s.suffix ?? ""}
             </span>
             <span className="mt-2 text-[12px] leading-tight text-[#cbd5e1]/85">
               {s.label}
@@ -98,7 +60,7 @@ export default function BeyondMobile() {
 
       <div className="mt-8 text-center">
         <a
-          href="https://www.linkedin.com/in/patryklikus/details/recommendations"
+          href={RECOMMENDATIONS_HREF}
           target="_blank"
           rel="noreferrer"
           className="inline-block text-[13px] tracking-[0.3px] text-[var(--color-accent)]"

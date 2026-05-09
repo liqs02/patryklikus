@@ -1,61 +1,8 @@
 import { motion } from "framer-motion";
 import AccentUnderline from "../../components/AccentUnderline";
 import { fadeIn, useSectionInView } from "../../lib/motion";
-
-const SOFTWARE_START_YEAR = 2021;
-const yearsWriting = `${new Date().getFullYear() - SOFTWARE_START_YEAR}+`;
-
-type Stat = {
-  value: string;
-  label: string;
-  sublabel: string;
-};
-
-const STATS: Stat[] = [
-  {
-    value: yearsWriting,
-    label: "years writing software",
-    sublabel: `since ${SOFTWARE_START_YEAR}`,
-  },
-  {
-    value: "50,000+",
-    label: "lines across private projects",
-    sublabel: "always cooking",
-  },
-  {
-    value: "10,000+",
-    label: "flashcard reviews",
-    sublabel: "Anki, since mid-2025",
-  },
-];
-
-type Quote = {
-  theme: string;
-  body: string;
-  author: string;
-  role: string;
-};
-
-const QUOTES: Quote[] = [
-  {
-    theme: "SKILL",
-    body: "He had a natural talent for solving complex technical problems. In no time, Patryk mastered new technologies and applied them with precision.",
-    author: "Iwona S.",
-    role: "Senior Software Engineer",
-  },
-  {
-    theme: "PASSION",
-    body: "Working with Patryk means working with someone whose passion for programming truly stands out. He frequently brings forward ideas that reflect the latest industry trends.",
-    author: "Tomasz W.",
-    role: "Tech Leader",
-  },
-  {
-    theme: "GROWTH",
-    body: "What impressed me most is how quickly he turned initial inexperience into strength — learning from tough feedback, adapting rapidly, and consistently delivering clean, well-architected solutions.",
-    author: "Mateusz S.",
-    role: "Senior Software Engineer",
-  },
-];
+import { formatLong } from "../../lib/format";
+import { QUOTES, RECOMMENDATIONS_HREF, STATS } from "./data";
 
 export default function Beyond() {
   const { sectionRef, inView } = useSectionInView();
@@ -101,7 +48,8 @@ export default function Beyond() {
                 className="flex flex-col items-center px-8 text-center"
               >
                 <p className="text-[44px] font-bold leading-none text-[var(--color-text)]">
-                  {s.value}
+                  {formatLong(s.value)}
+                  {s.suffix ?? ""}
                 </p>
                 <p className="mt-4 text-sm text-[#cbd5e1]/85">{s.label}</p>
                 <p className="mt-2 text-xs text-[#64748b]">{s.sublabel}</p>
@@ -141,7 +89,7 @@ export default function Beyond() {
               className="mt-8 text-center"
             >
               <a
-                href="https://www.linkedin.com/in/patryklikus/details/recommendations"
+                href={RECOMMENDATIONS_HREF}
                 target="_blank"
                 rel="noreferrer"
                 className="inline-block text-[13px] tracking-[0.3px] text-[var(--color-accent)] transition-opacity hover:opacity-80"

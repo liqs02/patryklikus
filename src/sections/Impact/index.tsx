@@ -2,50 +2,15 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import AccentUnderline from "../../components/AccentUnderline";
 import { fadeIn, useSectionInView } from "../../lib/motion";
+import {
+  GITHUB_PROFILE_HREF,
+  LINKEDIN_PROFILE_HREF,
+  POSTS,
+  PUBLICATION,
+} from "./data";
 
 const HOVER_READY =
   "transition-all duration-300 hover:-translate-y-1 hover:border-[var(--color-accent)]/30 hover:shadow-[0_12px_30px_-12px_rgba(45,212,191,0.25)]";
-
-const PUBLICATION = {
-  chip: "PEER-REVIEWED",
-  venue: "ECMS 2025  ·  European Conference on Modelling and Simulation",
-  title: "Analysis of Virtual Threads in Spring Applications",
-  authors: "Lead author  ·  Patryk Likus  ·  with Filip Krużel (CUT)",
-  abstract:
-    "Empirical comparison of Java 21 virtual threads against traditional platform threads in Spring REST APIs. Tests sweep across different mixes of computational work and I/O wait, throughput levels, and JVM choices — run on Spring Boot 3.4 + JDK 21 with Gatling load tests in controlled Docker workloads.",
-  keyFinding:
-    "Virtual threads ≠ free scalability — gains depend on workload mix.",
-  cta: "Read the paper",
-  href: "https://github.com/liqs02/research/blob/master/ecms2025.pdf",
-  hint: "GitHub  ·  ecms2025.pdf",
-};
-
-type Post = {
-  tag: string;
-  title: string;
-  snippet: string;
-  metric: string;
-  href: string;
-};
-
-const POSTS: Post[] = [
-  {
-    tag: "LINKEDIN POST  ·  JAVA QUIZ",
-    title: "Non-static inner class instantiation",
-    snippet:
-      "A quick quiz that surfaced how rarely we reach for non-static inner classes in modern Java.",
-    metric: "40+ reactions",
-    href: "https://www.linkedin.com/feed/update/urn:li:activity:7432017165056307201/",
-  },
-  {
-    tag: "LINKEDIN POST  ·  EXPLAINER",
-    title: "How Spring + Virtual Threads scale blocking code",
-    snippet:
-      "A walkthrough of platform vs virtual threads — write simple blocking code, get high concurrency.",
-    metric: "20+ reactions",
-    href: "https://www.linkedin.com/feed/update/urn:li:activity:7424492459734487040/",
-  },
-];
 
 export default function Impact() {
   const { sectionRef, inView } = useSectionInView();
@@ -112,7 +77,7 @@ export default function Impact() {
                 {PUBLICATION.authors}
               </p>
               <p className="mt-3 text-sm leading-snug text-[#cbd5e1]/85">
-                {PUBLICATION.abstract}
+                {PUBLICATION.abstractFull}
               </p>
 
               <div className="mt-5 flex border-l-[3px] border-[var(--color-accent)]/60 pl-4">
@@ -173,7 +138,7 @@ export default function Impact() {
             className="mx-auto mt-10 flex w-full max-w-[1280px] items-center justify-center gap-12"
           >
             <a
-              href="https://linkedin.com/in/patryklikus"
+              href={LINKEDIN_PROFILE_HREF}
               target="_blank"
               rel="noreferrer"
               className="text-[15px] tracking-[0.2px] text-[var(--color-accent)] transition-opacity hover:opacity-80"
@@ -181,7 +146,7 @@ export default function Impact() {
               LinkedIn →
             </a>
             <a
-              href="https://github.com/liqs02"
+              href={GITHUB_PROFILE_HREF}
               target="_blank"
               rel="noreferrer"
               className="text-[15px] tracking-[0.2px] text-[var(--color-accent)] transition-opacity hover:opacity-80"

@@ -2,12 +2,11 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import AccentUnderline from "../../components/AccentUnderline";
 import { fadeIn, useSectionInView } from "../../lib/motion";
+import { POSTS, PUBLICATION } from "./data";
 import {
-  GITHUB_PROFILE_HREF,
-  LINKEDIN_PROFILE_HREF,
-  POSTS,
-  PUBLICATION,
-} from "./data";
+  GITHUB_PROFILE_URL,
+  LINKEDIN_PROFILE_URL,
+} from "../../data/links";
 
 const HOVER_READY =
   "transition-all duration-300 hover:-translate-y-1 hover:border-[var(--color-accent)]/30 hover:shadow-[0_12px_30px_-12px_rgba(45,212,191,0.25)]";
@@ -138,7 +137,7 @@ export default function Impact() {
             className="mx-auto mt-10 flex w-full max-w-[1280px] items-center justify-center gap-12"
           >
             <a
-              href={LINKEDIN_PROFILE_HREF}
+              href={LINKEDIN_PROFILE_URL}
               target="_blank"
               rel="noreferrer"
               className="text-[15px] tracking-[0.2px] text-[var(--color-accent)] transition-opacity hover:opacity-80"
@@ -146,7 +145,7 @@ export default function Impact() {
               LinkedIn →
             </a>
             <a
-              href={GITHUB_PROFILE_HREF}
+              href={GITHUB_PROFILE_URL}
               target="_blank"
               rel="noreferrer"
               className="text-[15px] tracking-[0.2px] text-[var(--color-accent)] transition-opacity hover:opacity-80"

@@ -1,9 +1,8 @@
+import { POSTS, PUBLICATION } from "./data";
 import {
-  GITHUB_PROFILE_HREF,
-  LINKEDIN_PROFILE_HREF,
-  POSTS,
-  PUBLICATION,
-} from "./data";
+  GITHUB_PROFILE_URL,
+  LINKEDIN_PROFILE_URL,
+} from "../../data/links";
 
 export default function ImpactMobile() {
   return (
@@ -91,7 +90,7 @@ export default function ImpactMobile() {
 
       <div className="mt-8 flex items-center justify-center gap-10">
         <a
-          href={LINKEDIN_PROFILE_HREF}
+          href={LINKEDIN_PROFILE_URL}
           target="_blank"
           rel="noreferrer"
           className="text-[14px] text-[var(--color-accent)]"
@@ -99,7 +98,7 @@ export default function ImpactMobile() {
           LinkedIn →
         </a>
         <a
-          href={GITHUB_PROFILE_HREF}
+          href={GITHUB_PROFILE_URL}
           target="_blank"
           rel="noreferrer"
           className="text-[14px] text-[var(--color-accent)]"

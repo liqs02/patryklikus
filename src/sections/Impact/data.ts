@@ -40,6 +40,3 @@ export const POSTS: Post[] = [
     href: "https://www.linkedin.com/feed/update/urn:li:activity:7424492459734487040/",
   },
 ];
-
-export const LINKEDIN_PROFILE_HREF = "https://linkedin.com/in/patryklikus";
-export const GITHUB_PROFILE_HREF = "https://github.com/liqs02";

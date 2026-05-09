@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import Chip from "../../components/Chip";
 import Timeline from "../../components/Timeline";
 import { EntryType, TIMELINE } from "../../data/timeline";
+import { GITHUB_PROFILE_URL, LINKEDIN_PROFILE_URL } from "../../data/links";
 import { fade } from "./fade";
 
 const SKILLS = [
@@ -99,7 +100,23 @@ export default function LeftPanel() {
           {...fade(0.4)}
           className="order-3 mt-12 text-center text-xs text-[#475569] sm:text-left lg:order-none"
         >
-          github.com/liqs02 · linkedin.com/in/patryklikus
+          <a
+            href={GITHUB_PROFILE_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="transition-colors hover:text-[var(--color-accent)]"
+          >
+            github.com/liqs02
+          </a>
+          {" · "}
+          <a
+            href={LINKEDIN_PROFILE_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="transition-colors hover:text-[var(--color-accent)]"
+          >
+            linkedin.com/in/patryklikus
+          </a>
         </motion.p>
       </div>
     </div>

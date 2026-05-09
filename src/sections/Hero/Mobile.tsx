@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import Timeline from "../../components/Timeline";
 import { EntryType, TIMELINE } from "../../data/timeline";
+import { GITHUB_PROFILE_URL, LINKEDIN_PROFILE_URL } from "../../data/links";
 import { fade } from "./fade";
 
 const SKILLS_ROW_1 = ["Java", "Spring Boot", "K8s", "Azure"];
@@ -70,7 +71,23 @@ export default function HeroMobile() {
         {...fade(0.45)}
         className="mt-8 text-center text-[12px] text-[#475569]"
       >
-        github.com/liqs02 · linkedin.com/in/patryklikus
+        <a
+          href={GITHUB_PROFILE_URL}
+          target="_blank"
+          rel="noreferrer"
+          className="transition-colors active:text-[var(--color-accent)]"
+        >
+          github.com/liqs02
+        </a>
+        {" · "}
+        <a
+          href={LINKEDIN_PROFILE_URL}
+          target="_blank"
+          rel="noreferrer"
+          className="transition-colors active:text-[var(--color-accent)]"
+        >
+          linkedin.com/in/patryklikus
+        </a>
       </motion.p>
     </div>
   );

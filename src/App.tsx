@@ -1,7 +1,29 @@
+import Hero from "./sections/Hero";
+import Experience from "./sections/Experience";
+import ExperienceMobile from "./sections/Experience/Mobile";
+import Beyond from "./sections/Beyond";
+import BeyondMobile from "./sections/Beyond/Mobile";
+import Impact from "./sections/Impact";
+import ImpactMobile from "./sections/Impact/Mobile";
+import SectionDots from "./components/SectionDots";
+
 export default function App() {
   return (
-    <main className="min-h-screen bg-black text-white flex items-center justify-center">
-      <h1 className="text-4xl font-bold">Patryk Likus</h1>
-    </main>
+    <>
+      <SectionDots />
+      <Hero />
+      <div id="experience">
+        <Experience />
+        <ExperienceMobile />
+      </div>
+      <div id="beyond">
+        <Beyond />
+        <BeyondMobile />
+      </div>
+      <div id="impact">
+        <Impact />
+        <ImpactMobile />
+      </div>
+    </>
   );
 }

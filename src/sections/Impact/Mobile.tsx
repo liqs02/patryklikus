@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
+import { fadeUp } from "../../lib/motion";
 import {
+  COPY,
   GITHUB_PROFILE_HREF,
   LINKEDIN_PROFILE_HREF,
   POSTS,
@@ -7,13 +9,6 @@ import {
 } from "./data";
 
 const VIOLET = "#a78bfa";
-
-const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 16 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-10% 0px" },
-  transition: { duration: 0.5, delay, ease: [0.22, 1, 0.36, 1] as const },
-});
 
 export default function ImpactMobile() {
   return (
@@ -33,15 +28,15 @@ export default function ImpactMobile() {
             className="font-mono text-[10px] uppercase tracking-[0.3em]"
             style={{ color: VIOLET }}
           >
-            Impact
+            {COPY.eyebrow}
           </span>
           <span aria-hidden className="h-px w-8" style={{ backgroundColor: `${VIOLET}55` }} />
           <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-[#64748b]">
-            03 / 03
+            {COPY.counter}
           </span>
         </div>
         <h2 className="mt-4 text-[40px] font-bold leading-[1.04] tracking-[-0.02em] text-[var(--color-text)]">
-          Sharing <span style={{ color: VIOLET }}>what I learn</span>.
+          {COPY.titleStart}<span style={{ color: VIOLET }}>{COPY.titleAccent}</span>{COPY.titleEnd}
         </h2>
         <div
           aria-hidden
@@ -49,7 +44,7 @@ export default function ImpactMobile() {
           style={{ backgroundColor: VIOLET }}
         />
         <p className="mt-4 text-[14px] leading-[1.6] text-[var(--color-muted)]">
-          A peer-reviewed paper and a couple of posts that resonated.
+          {COPY.subtitle}
         </p>
       </motion.div>
 
@@ -162,7 +157,7 @@ export default function ImpactMobile() {
         <div className="flex items-center gap-2.5">
           <span aria-hidden className="h-px w-5 bg-[#1e293b]" />
           <span className="font-mono text-[10px] uppercase tracking-[0.32em] text-[#64748b]">
-            More on
+            {COPY.moreOn}
           </span>
         </div>
         <div className="mt-4 flex items-center gap-6">

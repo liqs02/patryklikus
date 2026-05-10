@@ -1,8 +1,17 @@
 import { motion } from "framer-motion";
 import { EntryType, TIMELINE } from "../../data/timeline";
+import { EASE } from "../../lib/motion";
 import { slideIn } from "./fade";
-
-const NAME = "Patryk Likus";
+import {
+  GITHUB_HREF,
+  GITHUB_LABEL,
+  LINKEDIN_HREF,
+  LINKEDIN_LABEL,
+  NAME,
+  ROLE,
+  SKILLS_DESKTOP,
+  TAGLINE,
+} from "./data";
 
 const NAME_CONTAINER = {
   hidden: {},
@@ -16,19 +25,9 @@ const NAME_CHAR = {
   show: {
     opacity: 1,
     x: 0,
-    transition: { duration: 0.2, ease: [0.22, 1, 0.36, 1] as const },
+    transition: { duration: 0.2, ease: EASE },
   },
 };
-
-const SKILLS = [
-  "Java",
-  "Spring Boot",
-  "Kubernetes",
-  "Azure",
-  "PostgreSQL",
-  "Redis",
-  "Kafka",
-];
 
 const HERO_JOBS = TIMELINE.filter((e) => e.type !== EntryType.Education);
 
@@ -82,7 +81,7 @@ export default function LeftPanel() {
         <motion.div
           initial={{ scaleX: 0, opacity: 0 }}
           animate={{ scaleX: 1, opacity: 1 }}
-          transition={{ duration: 0.7, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.7, delay: 0.55, ease: EASE }}
           style={{ transformOrigin: "left center" }}
           className="mt-6 h-[3px] w-[72px] rounded-sm bg-[var(--color-accent)]"
         />
@@ -91,14 +90,14 @@ export default function LeftPanel() {
           {...slideIn(0.7)}
           className="mt-5 text-2xl font-medium text-[var(--color-accent)]"
         >
-          Software Engineer
+          {ROLE}
         </motion.p>
 
         <motion.p
           {...slideIn(0.78)}
           className="mt-6 max-w-[560px] text-[17px] leading-snug text-[var(--color-muted)]"
         >
-          Building data-heavy systems, from global maps to emergency dispatch.
+          {TAGLINE}
         </motion.p>
 
         <motion.ul
@@ -130,9 +129,9 @@ export default function LeftPanel() {
           {...slideIn(0.96)}
           className="mt-8 font-mono text-[13px] leading-relaxed tracking-wide text-[#cbd5e1]/85"
         >
-          {SKILLS.map((s, i) => (
+          {SKILLS_DESKTOP.map((s, i) => (
             <span key={s}>
-              {i > 0 && <span className="text-[#f59e0b]/70">{"  ·  "}</span>}
+              {i > 0 && <span className="text-[var(--color-amber)]/70">{"  ·  "}</span>}
               {s}
             </span>
           ))}
@@ -143,7 +142,7 @@ export default function LeftPanel() {
           className="mt-12 flex flex-col items-center gap-1 text-xs text-[#475569] sm:flex-row sm:items-center sm:gap-3"
         >
           <a
-            href="https://github.com/liqs02"
+            href={GITHUB_HREF}
             target="_blank"
             rel="noreferrer"
             className="group inline-flex items-center gap-1.5 transition-colors hover:text-[var(--color-accent)]"
@@ -156,13 +155,13 @@ export default function LeftPanel() {
             >
               <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55 0-.27-.01-1.18-.02-2.14-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18.92-.26 1.91-.39 2.89-.39.98 0 1.97.13 2.89.39 2.21-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.69 5.41-5.25 5.69.41.36.78 1.06.78 2.13 0 1.54-.01 2.78-.01 3.16 0 .31.21.67.8.55C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z" />
             </svg>
-            github.com/liqs02
+            {GITHUB_LABEL}
           </a>
           <span className="hidden text-[var(--color-subtle)]/50 sm:inline">
             ·
           </span>
           <a
-            href="https://linkedin.com/in/patryklikus"
+            href={LINKEDIN_HREF}
             target="_blank"
             rel="noreferrer"
             className="group inline-flex items-center gap-1.5 transition-colors hover:text-[var(--color-accent)]"
@@ -175,7 +174,7 @@ export default function LeftPanel() {
             >
               <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67h-3.55V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z" />
             </svg>
-            linkedin.com/in/patryklikus
+            {LINKEDIN_LABEL}
           </a>
         </motion.div>
       </div>

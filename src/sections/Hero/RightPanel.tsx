@@ -1,5 +1,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { EASE } from "../../lib/motion";
+import { DASHBOARD } from "./data";
 import GridOverlay from "./GridOverlay";
 
 const SPARK_POINTS = 28;
@@ -33,9 +35,9 @@ function formatRps(v: number) {
 export default function RightPanel() {
   const reduced = useReducedMotion();
 
-  const [p99, setP99] = useState(28);
-  const [rps, setRps] = useState(60.4);
-  const cacheHit = 99.97;
+  const [p99, setP99] = useState(DASHBOARD.initialP99);
+  const [rps, setRps] = useState(DASHBOARD.initialRps);
+  const cacheHit = DASHBOARD.cacheHit;
   const [spark, setSpark] = useState<number[]>(() =>
     Array.from({ length: SPARK_POINTS }, (_, i) =>
       26 + Math.sin(i / 2) * 2 + Math.random() * 2,
@@ -96,7 +98,7 @@ export default function RightPanel() {
         <motion.div
           initial={{ opacity: 0, y: 30, rotateY: -22, rotateX: 10 }}
           animate={{ opacity: 1, y: 0, rotateY: -12, rotateX: 6 }}
-          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+          transition={{ duration: 0.9, ease: EASE, delay: 0.15 }}
           className="relative w-[460px]"
           style={{
             transformStyle: "preserve-3d",
@@ -123,7 +125,7 @@ export default function RightPanel() {
             initial={{ opacity: 0, y: 12, x: 12 }}
             animate={{ opacity: 1, y: 0, x: 0 }}
             transition={{ duration: 0.6, delay: 0.55 }}
-            className="absolute -right-16 -top-10 rounded-lg border border-[var(--color-border)] bg-[#0d1117]/95 px-3.5 py-2.5 backdrop-blur shadow-[0_30px_50px_-20px_rgba(0,0,0,0.8)]"
+            className="absolute -right-2 -top-10 rounded-lg border border-[var(--color-border)] bg-[#0d1117]/95 px-3.5 py-2.5 backdrop-blur shadow-[0_30px_50px_-20px_rgba(0,0,0,0.8)] xl:-right-16"
             style={{ transform: "translateZ(80px)" }}
           >
             <div className="flex items-center gap-2">
@@ -189,14 +191,14 @@ function DashboardCard({
             <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--color-accent)]" />
           </span>
           <span className="font-mono text-[12.5px] text-[var(--color-text)]">
-            tile-service
+            {DASHBOARD.service}
           </span>
           <span className="rounded border border-[var(--color-accent)]/30 px-1.5 py-px font-mono text-[10px] uppercase tracking-wider text-[var(--color-accent)]">
-            prod
+            {DASHBOARD.env}
           </span>
         </div>
         <span className="font-mono text-[10px] uppercase tracking-wider text-[var(--color-subtle)]">
-          live
+          {DASHBOARD.status}
         </span>
       </header>
 
@@ -212,14 +214,14 @@ function DashboardCard({
           label="throughput"
           value={formatRps(rps)}
           unit="req/s"
-          accent="#f59e0b"
+          accent="var(--color-amber)"
           delay={0.5}
         />
         <Metric
           label="cache hit"
           value={cacheHit.toFixed(2)}
           unit="%"
-          accent="#a78bfa"
+          accent="var(--color-violet)"
           delay={0.6}
         />
       </div>
@@ -281,10 +283,10 @@ function DashboardCard({
         className="flex items-center justify-between border-t border-[var(--color-border)] px-5 py-2.5"
       >
         <span className="font-mono text-[10px] text-[var(--color-subtle)]">
-          ── 2.1B tiles served today
+          {DASHBOARD.footerLeft}
         </span>
         <span className="font-mono text-[10px] text-[var(--color-subtle)]">
-          uptime 99.99%
+          {DASHBOARD.footerRight}
         </span>
       </motion.footer>
     </div>
@@ -308,7 +310,7 @@ function Metric({
     <motion.div
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.5, delay, ease: EASE }}
       className="px-5 py-4"
     >
       <div

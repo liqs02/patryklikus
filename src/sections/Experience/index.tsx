@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { useSectionInView } from "../../lib/motion";
+import { EASE, useSectionInView } from "../../lib/motion";
 import RolesIndex from "./RolesIndex";
 import FeaturePanel from "./FeaturePanel";
-import { JOB_OF_PROJECT, MOTOROLA, TOMTOM, type JobId, type ProjectKey } from "./data";
+import { COPY, JOB_OF_PROJECT, MOTOROLA, TOMTOM, type JobId, type ProjectKey } from "./data";
 
 const FIRST_PROJECT_OF: Record<JobId, ProjectKey> = {
   tomtom: "overture",
@@ -29,7 +29,7 @@ export default function Experience() {
         aria-hidden
         initial={{ opacity: 0 }}
         animate={inView ? { opacity: 1 } : { opacity: 0 }}
-        transition={{ duration: 1.2, delay: inView ? 0.3 : 0, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 1.2, delay: inView ? 0.3 : 0, ease: EASE }}
         className="pointer-events-none absolute inset-0"
         style={{
           background:
@@ -46,9 +46,9 @@ export default function Experience() {
               transition={{ duration: 0.5, delay: inView ? 0.1 : 0 }}
               className="flex items-center gap-3 text-[11px] tracking-[0.3em] uppercase"
             >
-              <span className="text-[var(--color-accent)]">Experience</span>
+              <span className="text-[var(--color-accent)]">{COPY.eyebrow}</span>
               <span aria-hidden className="h-px w-10 bg-[var(--color-accent)]/40" />
-              <span className="text-[#64748b]">01 / 03</span>
+              <span className="text-[#64748b]">{COPY.counter}</span>
             </motion.div>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -56,7 +56,7 @@ export default function Experience() {
               transition={{ duration: 0.6, delay: inView ? 0.15 : 0 }}
               className="mt-5 text-[64px] font-bold leading-[1.02] tracking-[-0.02em] text-[var(--color-text)]"
             >
-              Where I've <span className="text-[var(--color-accent)]">built</span> things.
+              {COPY.titleStart}<span className="text-[var(--color-accent)]">{COPY.titleAccent}</span>{COPY.titleEnd}
             </motion.h2>
             <motion.div
               initial={{ scaleX: 0 }}
@@ -71,7 +71,7 @@ export default function Experience() {
               transition={{ duration: 0.5, delay: inView ? 0.4 : 0 }}
               className="mt-5 max-w-[540px] text-[15px] leading-relaxed text-[var(--color-muted)]"
             >
-              Two roles, many projects — the work that shaped the engineer.
+              {COPY.subtitle}
             </motion.p>
           </div>
         </div>

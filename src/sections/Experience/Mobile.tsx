@@ -1,7 +1,9 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import overtureLogo from "../../assets/overture-logo.svg";
+import { EASE, fadeUp } from "../../lib/motion";
 import {
+  COPY,
   EDUCATION,
   MOTOROLA,
   PROJECTS,
@@ -15,25 +17,10 @@ const LOGOS: Record<string, string> = {
   overture: overtureLogo,
 };
 
-const PROJECT_TITLE: Record<ProjectKey, string> = {
-  overture: "Overture Maps",
-  orbis: "Orbis Maps",
-  "ai-dispatch": "AI Emergency Dispatch",
-  "geo-redundancy": "Geo-redundant Architecture",
-  fedramp: "FedRAMP Compliance",
-};
-
-const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 16 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-10% 0px" },
-  transition: { duration: 0.5, delay, ease: [0.22, 1, 0.36, 1] as const },
-});
-
 function ProjectBlock({ projectKey }: { projectKey: ProjectKey }) {
   const [open, setOpen] = useState(false);
   const p = PROJECTS[projectKey];
-  const title = PROJECT_TITLE[projectKey];
+  const title = p.title!;
 
   return (
     <motion.div
@@ -74,7 +61,7 @@ function ProjectBlock({ projectKey }: { projectKey: ProjectKey }) {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.32, ease: EASE }}
             className="overflow-hidden"
           >
             <div className="pb-5">
@@ -202,22 +189,22 @@ export default function ExperienceMobile() {
       <motion.div {...fadeUp()} className="relative">
         <div className="flex items-center gap-2.5">
           <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-[var(--color-accent)]">
-            Experience
+            {COPY.eyebrow}
           </span>
           <span aria-hidden className="h-px w-8 bg-[var(--color-accent)]/40" />
           <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-[#64748b]">
-            01 / 03
+            {COPY.counter}
           </span>
         </div>
         <h2 className="mt-4 text-[40px] font-bold leading-[1.04] tracking-[-0.02em] text-[var(--color-text)]">
-          Where I've <span className="text-[var(--color-accent)]">built</span> things.
+          {COPY.titleStart}<span className="text-[var(--color-accent)]">{COPY.titleAccent}</span>{COPY.titleEnd}
         </h2>
         <div
           aria-hidden
           className="mt-4 h-[3px] w-[64px] rounded-sm bg-[var(--color-accent)]"
         />
         <p className="mt-4 text-[14px] leading-[1.6] text-[var(--color-muted)]">
-          Two roles, many projects — the work that shaped the engineer.
+          {COPY.subtitle}
         </p>
       </motion.div>
 

@@ -43,3 +43,13 @@ export const POSTS: Post[] = [
 
 export const LINKEDIN_PROFILE_HREF = "https://linkedin.com/in/patryklikus";
 export const GITHUB_PROFILE_HREF = "https://github.com/liqs02";
+
+export const COPY = {
+  eyebrow: "Impact",
+  counter: "03 / 03",
+  titleStart: "Sharing ",
+  titleAccent: "what I learn",
+  titleEnd: ".",
+  subtitle: "A peer-reviewed paper and a couple of posts that resonated.",
+  moreOn: "More on",
+};

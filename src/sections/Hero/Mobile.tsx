@@ -1,7 +1,17 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-
-const NAME = "Patryk Likus";
+import { EASE } from "../../lib/motion";
+import {
+  DASHBOARD,
+  GITHUB_HREF,
+  GITHUB_LABEL,
+  LINKEDIN_HREF,
+  LINKEDIN_LABEL,
+  NAME,
+  ROLE,
+  SKILLS_MOBILE,
+  TAGLINE,
+} from "./data";
 
 const NAME_CONTAINER = {
   hidden: {},
@@ -12,19 +22,9 @@ const NAME_CHAR = {
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.25, ease: [0.22, 1, 0.36, 1] as const },
+    transition: { duration: 0.25, ease: EASE },
   },
 };
-
-const SKILLS = [
-  "Java",
-  "Spring Boot",
-  "Kubernetes",
-  "Azure",
-  "PostgreSQL",
-  "Kafka",
-  "Redis",
-];
 
 const SPARK_POINTS = 24;
 const SPARK_W = 320;
@@ -52,8 +52,8 @@ function buildSparkPath(values: number[]) {
 
 export default function HeroMobile() {
   const reduced = useReducedMotion();
-  const [p99, setP99] = useState(28);
-  const [rps, setRps] = useState(60.4);
+  const [p99, setP99] = useState(DASHBOARD.initialP99);
+  const [rps, setRps] = useState(DASHBOARD.initialRps);
   const [spark, setSpark] = useState<number[]>(() =>
     Array.from({ length: SPARK_POINTS }, (_, i) =>
       26 + Math.sin(i / 2) * 2 + Math.random() * 2,
@@ -139,7 +139,7 @@ export default function HeroMobile() {
       <motion.div
         initial={{ scaleX: 0 }}
         animate={{ scaleX: 1 }}
-        transition={{ duration: 0.6, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.6, delay: 0.55, ease: EASE }}
         style={{ transformOrigin: "left" }}
         className="relative mt-5 h-[3px] w-[64px] rounded-sm bg-[var(--color-accent)]"
       />
@@ -150,7 +150,7 @@ export default function HeroMobile() {
         transition={{ duration: 0.5, delay: 0.7 }}
         className="relative mt-5 text-[22px] font-medium text-[var(--color-accent)]"
       >
-        Software Engineer
+        {ROLE}
       </motion.p>
 
       <motion.p
@@ -159,7 +159,7 @@ export default function HeroMobile() {
         transition={{ duration: 0.5, delay: 0.78 }}
         className="relative mt-3 max-w-[28rem] text-[15px] leading-[1.55] text-[var(--color-muted)]"
       >
-        Building data-heavy systems, from global maps to emergency dispatch.
+        {TAGLINE}
       </motion.p>
 
       <motion.div
@@ -198,9 +198,9 @@ export default function HeroMobile() {
           </p>
         </div>
         <p className="mt-3 font-mono text-[12.5px] leading-[1.9] tracking-wide text-[#cbd5e1]/85">
-          {SKILLS.map((s, i) => (
+          {SKILLS_MOBILE.map((s, i) => (
             <span key={s}>
-              {i > 0 && <span className="text-[#f59e0b]/70">{"  ·  "}</span>}
+              {i > 0 && <span className="text-[var(--color-amber)]/70">{"  ·  "}</span>}
               {s}
             </span>
           ))}
@@ -210,8 +210,8 @@ export default function HeroMobile() {
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 1.25, ease: [0.22, 1, 0.36, 1] }}
-        className="relative mt-9 overflow-hidden rounded-xl border border-[var(--color-border)] bg-[#0d1117]/95 backdrop-blur shadow-[0_20px_50px_-25px_rgba(0,0,0,0.7)]"
+        transition={{ duration: 0.6, delay: 1.25, ease: EASE }}
+        className="relative mt-9 overflow-hidden rounded-xl border border-[var(--color-border)] bg-[#0d1117]/95 backdrop-blur shadow-[0_20px_50px_-25px_rgba(0,0,0,0.7)] sm:max-w-md"
       >
         <header className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-2.5">
           <div className="flex items-center gap-2">
@@ -220,21 +220,21 @@ export default function HeroMobile() {
               <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--color-accent)]" />
             </span>
             <span className="font-mono text-[12px] text-[var(--color-text)]">
-              tile-service
+              {DASHBOARD.service}
             </span>
             <span className="rounded border border-[var(--color-accent)]/30 px-1.5 py-px font-mono text-[9px] uppercase tracking-wider text-[var(--color-accent)]">
-              prod
+              {DASHBOARD.env}
             </span>
           </div>
           <span className="font-mono text-[9px] uppercase tracking-wider text-[var(--color-subtle)]">
-            live
+            {DASHBOARD.status}
           </span>
         </header>
 
         <div className="grid grid-cols-3 divide-x divide-[var(--color-border)]">
           <Metric label="p99" value={`${p99}`} unit="ms" accent="var(--color-accent)" />
-          <Metric label="rps" value={`${rps.toFixed(1)}k`} unit="req/s" accent="#f59e0b" />
-          <Metric label="cache" value="99.97" unit="%" accent="#a78bfa" />
+          <Metric label="rps" value={`${rps.toFixed(1)}k`} unit="req/s" accent="var(--color-amber)" />
+          <Metric label="cache" value={DASHBOARD.cacheHit.toFixed(2)} unit="%" accent="var(--color-violet)" />
         </div>
 
         <div className="border-t border-[var(--color-border)] px-4 py-3">
@@ -276,10 +276,10 @@ export default function HeroMobile() {
 
         <footer className="flex items-center justify-between border-t border-[var(--color-border)] px-4 py-2">
           <span className="font-mono text-[9px] text-[var(--color-subtle)]">
-            ── 2.1B tiles served today
+            {DASHBOARD.footerLeft}
           </span>
           <span className="font-mono text-[9px] text-[var(--color-subtle)]">
-            uptime 99.99%
+            {DASHBOARD.footerRight}
           </span>
         </footer>
       </motion.div>
@@ -291,21 +291,21 @@ export default function HeroMobile() {
         className="relative mt-auto flex items-center justify-center gap-3 pt-10 text-[11.5px] text-[#475569]"
       >
         <a
-          href="https://github.com/liqs02"
+          href={GITHUB_HREF}
           target="_blank"
           rel="noreferrer"
           className="transition-colors active:text-[var(--color-accent)]"
         >
-          github.com/liqs02
+          {GITHUB_LABEL}
         </a>
         <span className="text-[var(--color-subtle)]/40">·</span>
         <a
-          href="https://linkedin.com/in/patryklikus"
+          href={LINKEDIN_HREF}
           target="_blank"
           rel="noreferrer"
           className="transition-colors active:text-[var(--color-accent)]"
         >
-          linkedin.com/in/patryklikus
+          {LINKEDIN_LABEL}
         </a>
       </motion.div>
     </div>

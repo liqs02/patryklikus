@@ -75,3 +75,14 @@ export const THEMES: ThemeCard[] = [
 
 export const RECOMMENDATIONS_HREF =
   "https://www.linkedin.com/in/patryklikus/details/recommendations";
+
+export const COPY = {
+  eyebrow: "Beyond",
+  counter: "02 / 03",
+  titleStart: "Beyond the ",
+  titleAccent: "code",
+  titleEnd: ".",
+  subtitle:
+    "Three things people keep noticing — paired with the numbers behind them.",
+  cta: "View recommendations on LinkedIn →",
+};

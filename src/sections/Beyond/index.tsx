@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import AccentUnderline from "../../components/AccentUnderline";
-import { fadeIn, useSectionInView } from "../../lib/motion";
+import { EASE, fadeIn, useSectionInView } from "../../lib/motion";
 import { formatLong } from "../../lib/format";
-import { RECOMMENDATIONS_HREF, THEMES } from "./data";
+import { COPY, RECOMMENDATIONS_HREF, THEMES } from "./data";
 
 export default function Beyond() {
   const { sectionRef, inView } = useSectionInView();
@@ -17,7 +17,7 @@ export default function Beyond() {
         aria-hidden
         initial={{ opacity: 0 }}
         animate={{ opacity: inView ? 1 : 0 }}
-        transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+        transition={{ duration: 1.1, ease: EASE, delay: 0.15 }}
         style={{
           background:
             "radial-gradient(circle at 18% 70%, rgba(16,185,129,0.06), transparent 42%), radial-gradient(circle at 50% 78%, rgba(245,158,11,0.06), transparent 42%), radial-gradient(circle at 82% 70%, rgba(167,139,250,0.06), transparent 42%), radial-gradient(ellipse at 50% 0%, rgba(15,23,42,0.55), transparent 55%)",
@@ -38,26 +38,25 @@ export default function Beyond() {
             {...a(0.1)}
             className="flex items-center gap-3 text-[11px] tracking-[0.3em] uppercase"
           >
-            <span className="text-[#f59e0b]">Beyond</span>
-            <span aria-hidden className="h-px w-10 bg-[#f59e0b]/40" />
-            <span className="text-[#64748b]">02 / 03</span>
+            <span className="text-[var(--color-amber)]">{COPY.eyebrow}</span>
+            <span aria-hidden className="h-px w-10 bg-[var(--color-amber)]/40" />
+            <span className="text-[#64748b]">{COPY.counter}</span>
           </motion.div>
           <motion.h2
             {...a(0.15)}
             className="mt-5 text-[64px] font-bold leading-[1.02] tracking-[-0.02em] text-[var(--color-text)]"
           >
-            Beyond the <span className="text-[#f59e0b]">code</span>.
+            {COPY.titleStart}<span className="text-[var(--color-amber)]">{COPY.titleAccent}</span>{COPY.titleEnd}
           </motion.h2>
           <AccentUnderline
             inView={inView}
-            className="mt-4 h-[3px] w-[88px] rounded-sm bg-[#f59e0b]"
+            className="mt-4 h-[3px] w-[88px] rounded-sm bg-[var(--color-amber)]"
           />
           <motion.p
             {...a(0.35)}
             className="mt-4 text-[15px] text-[var(--color-muted)]"
           >
-            Three things people keep noticing — paired with the numbers behind
-            them.
+            {COPY.subtitle}
           </motion.p>
         </div>
 
@@ -136,16 +135,16 @@ export default function Beyond() {
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false, amount: 0.8 }}
-              transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.45, ease: EASE }}
               className="mt-8 text-center"
             >
               <a
                 href={RECOMMENDATIONS_HREF}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-block text-[13px] tracking-[0.3px] text-[#f59e0b] transition-opacity hover:opacity-80"
+                className="inline-block text-[13px] tracking-[0.3px] text-[var(--color-amber)] transition-opacity hover:opacity-80"
               >
-                View recommendations on LinkedIn →
+                {COPY.cta}
               </a>
             </motion.div>
           </div>

@@ -8,6 +8,8 @@
   --color-subtle: #6b7280;
   --color-accent: #10b981;
   --color-accent-dim: #10b98114;
+  --color-amber: #f59e0b;
+  --color-violet: #a78bfa;
   --color-text: #f8fafc;
   --font-sans: "Inter", system-ui, sans-serif;
 }

@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import overtureLogo from "../../assets/overture-logo.svg";
+import { EASE } from "../../lib/motion";
 import { PROJECTS, type JobCard, type ProjectKey } from "./data";
 
 type Props = {
@@ -13,7 +14,7 @@ const LOGOS: Record<string, string> = {
   overture: overtureLogo,
 };
 
-const PROJECT_TRANSITION = { duration: 0.22, ease: [0.22, 1, 0.36, 1] as const };
+const PROJECT_TRANSITION = { duration: 0.22, ease: EASE };
 
 export default function FeaturePanel({ inView, selected, activeJob, onSelect }: Props) {
   const project = PROJECTS[selected];
@@ -22,7 +23,7 @@ export default function FeaturePanel({ inView, selected, activeJob, onSelect }: 
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-      transition={{ duration: 0.7, delay: inView ? 0.55 : 0, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.7, delay: inView ? 0.55 : 0, ease: EASE }}
       className="relative"
     >
       <div className="flex items-baseline gap-3">

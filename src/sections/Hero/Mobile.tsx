@@ -211,7 +211,7 @@ export default function HeroMobile() {
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 1.25, ease: EASE }}
-        className="relative mt-9 overflow-hidden rounded-xl border border-[var(--color-border)] bg-[#0d1117]/95 backdrop-blur shadow-[0_20px_50px_-25px_rgba(0,0,0,0.7)]"
+        className="relative mt-9 overflow-hidden rounded-xl border border-[var(--color-border)] bg-[#0d1117]/95 backdrop-blur shadow-[0_20px_50px_-25px_rgba(0,0,0,0.7)] sm:max-w-md"
       >
         <header className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-2.5">
           <div className="flex items-center gap-2">

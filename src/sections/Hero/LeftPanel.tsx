@@ -59,15 +59,23 @@ export default function LeftPanel() {
           aria-label={NAME}
           className="text-[44px] font-bold leading-[1.1] tracking-tight text-[var(--color-text)] sm:text-6xl lg:text-[70px]"
         >
-          {NAME.split("").map((c, i) => (
-            <motion.span
-              key={i}
-              variants={NAME_CHAR}
-              aria-hidden
-              style={{ display: "inline-block" }}
+          {NAME.split(" ").map((word, wi, words) => (
+            <span
+              key={wi}
+              style={{ display: "inline-block", whiteSpace: "nowrap" }}
             >
-              {c === " " ? " " : c}
-            </motion.span>
+              {word.split("").map((c, ci) => (
+                <motion.span
+                  key={ci}
+                  variants={NAME_CHAR}
+                  aria-hidden
+                  style={{ display: "inline-block" }}
+                >
+                  {c}
+                </motion.span>
+              ))}
+              {wi < words.length - 1 && " "}
+            </span>
           ))}
         </motion.h1>
 

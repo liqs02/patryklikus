@@ -116,15 +116,23 @@ export default function HeroMobile() {
         aria-label={NAME}
         className="relative mt-6 text-[44px] font-bold leading-[1.05] tracking-tight text-[var(--color-text)] sm:text-[56px]"
       >
-        {NAME.split("").map((c, i) => (
-          <motion.span
-            key={i}
-            variants={NAME_CHAR}
-            aria-hidden
-            style={{ display: "inline-block" }}
+        {NAME.split(" ").map((word, wi, words) => (
+          <span
+            key={wi}
+            style={{ display: "inline-block", whiteSpace: "nowrap" }}
           >
-            {c === " " ? " " : c}
-          </motion.span>
+            {word.split("").map((c, ci) => (
+              <motion.span
+                key={ci}
+                variants={NAME_CHAR}
+                aria-hidden
+                style={{ display: "inline-block" }}
+              >
+                {c}
+              </motion.span>
+            ))}
+            {wi < words.length - 1 && " "}
+          </span>
         ))}
       </motion.h1>
 

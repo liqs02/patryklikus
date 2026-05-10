@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
-import overtureLogo from "../../assets/overture-logo.png";
+import overtureLogo from "../../assets/overture-logo.svg";
 import {
   EDUCATION,
   MOTOROLA,

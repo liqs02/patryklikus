@@ -19,7 +19,7 @@ export default function Experience() {
   return (
     <section
       ref={sectionRef}
-      className="relative hidden h-screen w-full overflow-hidden bg-[var(--color-bg)] lg:block lg:[scroll-snap-align:start] lg:[scroll-snap-stop:always]"
+      className="relative hidden min-h-screen w-full overflow-hidden bg-[var(--color-bg)] lg:block lg:[scroll-snap-align:start] lg:[scroll-snap-stop:always]"
     >
       <div
         aria-hidden
@@ -37,7 +37,7 @@ export default function Experience() {
         }}
       />
 
-      <div className="relative mx-auto flex h-full max-w-[1500px] flex-col px-12 pt-[10vh] pb-14 xl:px-20">
+      <div className="relative mx-auto flex min-h-screen max-w-[1500px] flex-col px-12 pt-[10vh] pb-14 xl:px-20">
         <div className="flex items-end justify-between">
           <div className="max-w-[760px]">
             <motion.div

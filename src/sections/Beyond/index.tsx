@@ -11,7 +11,7 @@ export default function Beyond() {
   return (
     <section
       ref={sectionRef}
-      className="relative hidden h-screen w-full overflow-hidden bg-[var(--color-bg)] lg:block lg:[scroll-snap-align:start] lg:[scroll-snap-stop:always]"
+      className="relative hidden min-h-screen w-full overflow-hidden bg-[var(--color-bg)] lg:block lg:[scroll-snap-align:start] lg:[scroll-snap-stop:always]"
     >
       <motion.div
         aria-hidden
@@ -32,7 +32,7 @@ export default function Beyond() {
         aria-hidden
         className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#1e293b] to-transparent"
       />
-      <div className="relative mx-auto flex h-full max-w-[1500px] flex-col px-12 pt-[10vh] pb-14 xl:px-20">
+      <div className="relative mx-auto flex min-h-screen max-w-[1500px] flex-col px-12 pt-[10vh] pb-14 xl:px-20">
         <div className="max-w-[700px]">
           <motion.div
             {...a(0.1)}
@@ -61,7 +61,7 @@ export default function Beyond() {
           </motion.p>
         </div>
 
-        <div className="flex flex-1 flex-col justify-center">
+        <div className="mt-12 flex flex-1 flex-col justify-center">
           <div className="mx-auto w-full max-w-[1200px]">
             <div className="grid grid-cols-3 gap-6">
               {THEMES.map((t, i) => (

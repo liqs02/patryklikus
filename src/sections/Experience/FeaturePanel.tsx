@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import overtureLogo from "../../assets/overture-logo.png";
+import overtureLogo from "../../assets/overture-logo.svg";
 import { PROJECTS, type JobCard, type ProjectKey } from "./data";
 
 type Props = {

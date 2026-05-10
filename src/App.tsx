@@ -11,19 +11,21 @@ export default function App() {
   return (
     <>
       <SectionDots />
-      <Hero />
-      <div id="experience">
-        <Experience />
-        <ExperienceMobile />
-      </div>
-      <div id="beyond">
-        <Beyond />
-        <BeyondMobile />
-      </div>
-      <div id="impact">
-        <Impact />
-        <ImpactMobile />
-      </div>
+      <main>
+        <Hero />
+        <div id="experience">
+          <Experience />
+          <ExperienceMobile />
+        </div>
+        <div id="beyond">
+          <Beyond />
+          <BeyondMobile />
+        </div>
+        <div id="impact">
+          <Impact />
+          <ImpactMobile />
+        </div>
+      </main>
     </>
   );
 }

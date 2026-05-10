@@ -125,7 +125,7 @@ export default function RightPanel() {
             initial={{ opacity: 0, y: 12, x: 12 }}
             animate={{ opacity: 1, y: 0, x: 0 }}
             transition={{ duration: 0.6, delay: 0.55 }}
-            className="absolute -right-16 -top-10 rounded-lg border border-[var(--color-border)] bg-[#0d1117]/95 px-3.5 py-2.5 backdrop-blur shadow-[0_30px_50px_-20px_rgba(0,0,0,0.8)]"
+            className="absolute -right-2 -top-10 rounded-lg border border-[var(--color-border)] bg-[#0d1117]/95 px-3.5 py-2.5 backdrop-blur shadow-[0_30px_50px_-20px_rgba(0,0,0,0.8)] xl:-right-16"
             style={{ transform: "translateZ(80px)" }}
           >
             <div className="flex items-center gap-2">

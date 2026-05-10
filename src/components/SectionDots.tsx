@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 
 const SECTIONS = [
-  { id: "hero", label: "Hero" },
-  { id: "experience", label: "Experience" },
-  { id: "beyond", label: "Beyond" },
-  { id: "impact", label: "Impact" },
+  { id: "hero", label: "Hero", color: "#10b981", glow: "rgba(16,185,129,0.5)" },
+  { id: "experience", label: "Experience", color: "#10b981", glow: "rgba(16,185,129,0.5)" },
+  { id: "beyond", label: "Beyond", color: "#f59e0b", glow: "rgba(245,158,11,0.5)" },
+  { id: "impact", label: "Impact", color: "#a78bfa", glow: "rgba(167,139,250,0.5)" },
 ];
 
 export default function SectionDots() {
@@ -35,7 +35,7 @@ export default function SectionDots() {
       className="fixed right-6 top-1/2 z-50 hidden -translate-y-1/2 lg:block"
     >
       <ul className="flex flex-col gap-4">
-        {SECTIONS.map(({ id, label }) => {
+        {SECTIONS.map(({ id, label, color, glow }) => {
           const isActive = active === id;
           return (
             <li key={id}>
@@ -50,8 +50,13 @@ export default function SectionDots() {
                   className={
                     "h-2 w-2 rounded-full transition-all duration-300 " +
                     (isActive
-                      ? "scale-125 bg-[var(--color-accent)] shadow-[0_0_12px_rgba(16,185,129,0.5)]"
+                      ? "scale-125"
                       : "bg-[#94a3b8]/30 group-hover:bg-[#94a3b8]/70")
+                  }
+                  style={
+                    isActive
+                      ? { backgroundColor: color, boxShadow: `0 0 12px ${glow}` }
+                      : undefined
                   }
                 />
                 <span className="pointer-events-none absolute right-6 whitespace-nowrap rounded-md border border-[var(--color-border)] bg-[#0e1116] px-2.5 py-1 text-[11px] text-[var(--color-muted)] opacity-0 transition-opacity duration-200 group-hover:opacity-100">

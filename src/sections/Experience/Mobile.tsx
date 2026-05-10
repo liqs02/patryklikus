@@ -1,3 +1,4 @@
+import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import overtureLogo from "../../assets/overture-logo.png";
 import {
@@ -10,182 +11,238 @@ import {
 } from "./data";
 import { formatPeriod } from "./duration";
 
-const LOGOS: Record<string, string> = { overture: overtureLogo };
+const LOGOS: Record<string, string> = {
+  overture: overtureLogo,
+};
 
-function JobCardMobile({
-  job,
-  selected,
-  onSelect,
-}: {
-  job: JobCard;
-  selected: ProjectKey;
-  onSelect: (k: ProjectKey) => void;
-}) {
-  const project = PROJECTS[selected];
-  const isCurrent = !!job.active;
+const PROJECT_TITLE: Record<ProjectKey, string> = {
+  overture: "Overture Maps",
+  orbis: "Orbis Maps",
+  "ai-dispatch": "AI Emergency Dispatch",
+  "geo-redundancy": "Geo-redundant Architecture",
+  fedramp: "FedRAMP Compliance",
+};
+
+const fadeUp = (delay = 0) => ({
+  initial: { opacity: 0, y: 16 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-10% 0px" },
+  transition: { duration: 0.5, delay, ease: [0.22, 1, 0.36, 1] as const },
+});
+
+function ProjectBlock({ projectKey }: { projectKey: ProjectKey }) {
+  const [open, setOpen] = useState(false);
+  const p = PROJECTS[projectKey];
+  const title = PROJECT_TITLE[projectKey];
 
   return (
-    <article
-      className={
-        "relative overflow-hidden rounded-xl p-5 " +
-        (isCurrent
-          ? "border border-[var(--color-accent)]/40 bg-[var(--color-accent)]/[0.06] pl-6"
-          : "border border-[#cbd5e1]/15 bg-[#cbd5e1]/[0.02]")
-      }
+    <motion.div
+      {...fadeUp(0.05)}
+      className="relative border-t border-[#1e293b]"
     >
-      {isCurrent && (
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+        className="flex w-full items-center justify-between py-4 text-left active:opacity-75"
+      >
+        <span
+          className={
+            "text-[18px] font-semibold tracking-tight transition-colors " +
+            (open ? "text-[var(--color-accent)]" : "text-[var(--color-text)]")
+          }
+        >
+          {title}
+        </span>
         <span
           aria-hidden
-          className="absolute left-0 top-3 bottom-3 w-[3px] bg-[var(--color-accent)]"
-        />
-      )}
-      {isCurrent && (
-        <span className="absolute right-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-[var(--color-accent)]/[0.18] px-2 py-0.5 text-[9px] font-bold uppercase tracking-[0.12em] text-[var(--color-accent)]">
-          <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-accent)]" />
-          Active
+          className={
+            "ml-3 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border transition-all duration-300 " +
+            (open
+              ? "rotate-45 border-[var(--color-accent)]/60 text-[var(--color-accent)]"
+              : "border-[#334155] text-[#94a3b8]")
+          }
+        >
+          <span className="text-[14px] leading-none">+</span>
         </span>
-      )}
+      </button>
 
-      <p
-        className={
-          "font-mono text-[11px] " +
-          (isCurrent
-            ? "text-[var(--color-accent)]"
-            : "text-[#cbd5e1]/75")
-        }
-      >
-        {formatPeriod(job.period)}
-      </p>
-      <h3 className="mt-2 text-[24px] font-bold leading-none text-[var(--color-text)]">
-        {job.company}
-      </h3>
-      <p className="mt-2 text-sm text-[var(--color-muted)]">{job.role}</p>
-
-      <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 border-b border-[#94a3b8]/15 pb-2.5">
-        {job.chips.map((c, i) => {
-          const tabActive = selected === c.key;
-          return (
-            <button
-              type="button"
-              key={c.key}
-              onClick={() => onSelect(c.key)}
-              className="relative flex items-baseline gap-1.5 py-1"
-            >
-              <span
-                className={
-                  "font-mono text-[10px] transition-colors " +
-                  (tabActive
-                    ? "text-[var(--color-accent)]"
-                    : "text-[#94a3b8]/60")
-                }
-              >
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <span
-                className={
-                  "text-[12px] font-bold transition-colors " +
-                  (tabActive
-                    ? "text-[var(--color-accent)]"
-                    : "text-[#cbd5e1]")
-                }
-              >
-                {c.label}
-              </span>
-              {tabActive && (
-                <span
-                  aria-hidden
-                  className="absolute inset-x-0 -bottom-2.5 h-[2px] rounded-sm bg-[var(--color-accent)]"
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            key="content"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+            className="overflow-hidden"
+          >
+            <div className="pb-5">
+              {p.logo && LOGOS[p.logo] && (
+                <img
+                  src={LOGOS[p.logo]}
+                  alt={title}
+                  className="h-10 w-auto select-none"
+                  draggable={false}
                 />
               )}
-            </button>
-          );
-        })}
-      </div>
 
-      <div className="mt-4">
-        {project.logo && LOGOS[project.logo] ? (
-          <img
-            src={LOGOS[project.logo]}
-            alt={project.title ?? project.caption}
-            className="h-12 w-auto select-none"
-            draggable={false}
-          />
-        ) : (
-          <h4 className="text-[20px] font-bold leading-tight text-[var(--color-text)]">
-            {project.title}
-          </h4>
-        )}
-        <p className="mt-3 text-[13px] leading-snug text-[#cbd5e1]/85">
-          {project.description[0]}
-        </p>
-        {project.usedBy && project.usedBy.length > 0 && (
-          <div className="mt-4">
-            <p className="text-[10px] font-medium uppercase tracking-[0.12em] text-[var(--color-accent)]">
-              Used by
-            </p>
-            <div className="mt-1.5 flex flex-wrap items-baseline gap-x-4 gap-y-1">
-              {project.usedBy.map((b) => (
-                <span
-                  key={b.label}
-                  className="text-[15px] text-[#cbd5e1]/75"
-                  style={{ fontWeight: b.weight }}
-                >
-                  {b.label}
-                </span>
-              ))}
+              <div className={(p.logo && LOGOS[p.logo] ? "mt-3 " : "") + "space-y-2.5"}>
+                {p.description.map((par, i) => (
+                  <p key={i} className="text-[13.5px] leading-[1.65] text-[#cbd5e1]/85">
+                    {par}
+                  </p>
+                ))}
+              </div>
+
+              {p.usedBy && p.usedBy.length > 0 && (
+                <div className="mt-4 border-t border-[#1e293b]/70 pt-3">
+                  <div className="flex items-baseline gap-2.5">
+                    <span aria-hidden className="h-px w-4 bg-[var(--color-accent)]/40" />
+                    <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-[var(--color-accent)]">
+                      Used by
+                    </p>
+                  </div>
+                  <div className="mt-2 flex flex-wrap items-baseline gap-x-5 gap-y-1.5">
+                    {p.usedBy.map((b) => (
+                      <span
+                        key={b.label}
+                        className="text-[16px] leading-none tracking-[-0.01em] text-[#cbd5e1]/75"
+                        style={{ fontWeight: b.weight }}
+                      >
+                        {b.label}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {p.reference && (
+                <div className="mt-4">
+                  <a
+                    href={p.reference.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-baseline gap-1.5 text-[12px] tracking-[0.01em] text-[var(--color-accent)] active:opacity-75"
+                  >
+                    <span>{p.reference.label}</span>
+                    <span>↗</span>
+                  </a>
+                </div>
+              )}
             </div>
-          </div>
+          </motion.div>
         )}
-        {project.reference && (
-          <a
-            href={project.reference.href}
-            target="_blank"
-            rel="noreferrer"
-            className="mt-3 inline-block text-[11px] text-[var(--color-accent)]/85 transition-colors hover:text-[var(--color-accent)]"
-          >
-            {project.reference.label} →
-          </a>
+      </AnimatePresence>
+    </motion.div>
+  );
+}
+
+function JobBlock({ job, active }: { job: JobCard; active?: boolean }) {
+  return (
+    <motion.div {...fadeUp()} className="relative pt-6">
+      <div className="flex items-center gap-2.5">
+        <span
+          className={
+            "font-mono text-[10px] uppercase tracking-[0.22em] " +
+            (active ? "text-[var(--color-accent)]" : "text-[#94a3b8]")
+          }
+        >
+          {formatPeriod(job.period)}
+        </span>
+        {active && (
+          <span className="relative flex h-2 w-2" aria-hidden>
+            <span className="absolute inset-0 animate-ping rounded-full bg-[var(--color-accent)]/55" />
+            <span className="relative h-2 w-2 rounded-full bg-[var(--color-accent)]" />
+          </span>
         )}
       </div>
-    </article>
+      <h3 className="mt-2 text-[34px] font-bold leading-[1.04] tracking-[-0.022em] text-[var(--color-text)]">
+        {job.company}
+      </h3>
+      <p className="mt-1.5 text-[13.5px] text-[var(--color-muted)]">
+        {job.role}
+      </p>
+      {job.description && (
+        <p className="mt-3 text-[13.5px] leading-[1.6] text-[#cbd5e1]/80">
+          {job.description}
+        </p>
+      )}
+
+      <div className="mt-5">
+        <div className="mb-3 flex items-center gap-2.5">
+          <span aria-hidden className="h-px w-4 bg-[var(--color-accent)]/40" />
+          <p className="font-mono text-[9.5px] uppercase tracking-[0.3em] text-[var(--color-accent)]">
+            Projects
+          </p>
+        </div>
+        {job.chips.map((c) => (
+          <ProjectBlock key={c.key} projectKey={c.key} />
+        ))}
+      </div>
+    </motion.div>
   );
 }
 
 export default function ExperienceMobile() {
-  const [tomtomProject, setTomtomProject] = useState<ProjectKey>("overture");
-  const [motoProject, setMotoProject] = useState<ProjectKey>("ai-dispatch");
-
   return (
-    <section className="relative w-full px-6 py-16 sm:px-10 lg:hidden">
-      <p className="text-[11px] uppercase tracking-[0.12em] text-[var(--color-accent)]">
-        Experience
-      </p>
-      <h2 className="mt-3 text-[32px] font-bold leading-tight text-[var(--color-text)]">
-        Where I've built things
-      </h2>
-      <div className="mt-3 h-[3px] w-[56px] rounded-sm bg-[var(--color-accent)]" />
+    <section
+      id="experience-mobile"
+      className="relative w-full overflow-hidden px-6 pt-16 pb-20 sm:px-10 lg:hidden"
+    >
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(circle at 85% 15%, rgba(16,185,129,0.10), transparent 50%), radial-gradient(circle at 10% 85%, rgba(16,185,129,0.06), transparent 55%)",
+        }}
+      />
 
-      <div className="mt-8 space-y-5">
-        <JobCardMobile
-          job={TOMTOM}
-          selected={tomtomProject}
-          onSelect={setTomtomProject}
-        />
-
-        <div className="px-1">
-          <p className="text-[12px] font-medium text-[#cbd5e1]/85">
-            {EDUCATION.line1}
-          </p>
-          <p className="mt-0.5 text-[10px] font-medium uppercase tracking-[0.6px] text-[var(--color-accent)]/70">
-            {EDUCATION.line2}
-          </p>
+      <motion.div {...fadeUp()} className="relative">
+        <div className="flex items-center gap-2.5">
+          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-[var(--color-accent)]">
+            Experience
+          </span>
+          <span aria-hidden className="h-px w-8 bg-[var(--color-accent)]/40" />
+          <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-[#64748b]">
+            01 / 03
+          </span>
         </div>
-
-        <JobCardMobile
-          job={MOTOROLA}
-          selected={motoProject}
-          onSelect={setMotoProject}
+        <h2 className="mt-4 text-[40px] font-bold leading-[1.04] tracking-[-0.02em] text-[var(--color-text)]">
+          Where I've <span className="text-[var(--color-accent)]">built</span> things.
+        </h2>
+        <div
+          aria-hidden
+          className="mt-4 h-[3px] w-[64px] rounded-sm bg-[var(--color-accent)]"
         />
+        <p className="mt-4 text-[14px] leading-[1.6] text-[var(--color-muted)]">
+          Two roles, many projects — the work that shaped the engineer.
+        </p>
+      </motion.div>
+
+      <div className="relative mt-12">
+        <JobBlock job={TOMTOM} active />
+
+        <motion.div
+          {...fadeUp()}
+          className="relative mt-10 flex items-center gap-3 border-y border-[#1e293b] py-6"
+          aria-label="Education milestone"
+        >
+          <span
+            aria-hidden
+            className="h-2 w-2 rotate-45 border border-[var(--color-accent)]/60"
+          />
+          <span className="font-mono text-[10px] uppercase tracking-[0.22em] leading-[1.7] text-[#94a3b8]/85">
+            {EDUCATION.line1}
+            <br />
+            {EDUCATION.line2}
+          </span>
+        </motion.div>
+
+        <div className="mt-4">
+          <JobBlock job={MOTOROLA} />
+        </div>
       </div>
     </section>
   );

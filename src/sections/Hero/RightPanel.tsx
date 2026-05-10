@@ -1,99 +1,345 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import GridOverlay from "./GridOverlay";
 
-const CODE_LINES: { indent: number; tokens: { text: string; tone?: "kw" | "type" | "str" | "fn" | "mut" | "cmt" }[] }[] = [
-  { indent: 0, tokens: [{ text: "@GetMapping", tone: "type" }, { text: "(" }, { text: "\"/tiles/{z}/{x}/{y}\"", tone: "str" }, { text: ")" }] },
-  { indent: 0, tokens: [{ text: "Mono", tone: "type" }, { text: "<", tone: "mut" }, { text: "TileBundle", tone: "type" }, { text: "> ", tone: "mut" }, { text: "tile", tone: "fn" }, { text: "(" }, { text: "int ", tone: "kw" }, { text: "z, " }, { text: "int ", tone: "kw" }, { text: "x, " }, { text: "int ", tone: "kw" }, { text: "y) {" }] },
-  { indent: 1, tokens: [{ text: "return ", tone: "kw" }, { text: "cache." }, { text: "getOrLoad", tone: "fn" }, { text: "(" }, { text: "key", tone: "fn" }, { text: "(z, x, y), () ->" }] },
-  { indent: 2, tokens: [{ text: "repo." }, { text: "findInBBox", tone: "fn" }, { text: "(" }, { text: "BBox", tone: "type" }, { text: "." }, { text: "of", tone: "fn" }, { text: "(z, x, y))" }] },
-  { indent: 3, tokens: [{ text: "." }, { text: "collectList", tone: "fn" }, { text: "()" }] },
-  { indent: 3, tokens: [{ text: "." }, { text: "map", tone: "fn" }, { text: "(" }, { text: "TileBundle::pack", tone: "type" }, { text: "));" }] },
-  { indent: 0, tokens: [{ text: "}" }] },
-  { indent: 0, tokens: [{ text: "// 2.1B tiles served · 99.97% cache hit", tone: "cmt" }] },
-];
+const SPARK_POINTS = 28;
+const SPARK_W = 400;
+const SPARK_H = 56;
 
-const TONE: Record<string, string> = {
-  kw: "text-[var(--color-accent)]",
-  type: "text-[#9bd9d2]",
-  str: "text-[#d6a96b]",
-  fn: "text-[#cfe9e6]",
-  mut: "text-[var(--color-muted)]",
-  cmt: "text-[var(--color-subtle)] italic",
-};
+function jitter(prev: number, range: [number, number], step: number) {
+  const next = prev + (Math.random() - 0.5) * step;
+  return Math.min(range[1], Math.max(range[0], next));
+}
+
+function buildSparkPath(values: number[]) {
+  if (values.length === 0) return "";
+  const min = Math.min(...values);
+  const max = Math.max(...values);
+  const span = max - min || 1;
+  const step = SPARK_W / (values.length - 1);
+  return values
+    .map((v, i) => {
+      const x = i * step;
+      const y = SPARK_H - ((v - min) / span) * SPARK_H;
+      return `${i === 0 ? "M" : "L"}${x.toFixed(2)},${y.toFixed(2)}`;
+    })
+    .join(" ");
+}
+
+function formatRps(v: number) {
+  return `${v.toFixed(1)}k`;
+}
 
 export default function RightPanel() {
+  const reduced = useReducedMotion();
+
+  const [p99, setP99] = useState(28);
+  const [rps, setRps] = useState(60.4);
+  const cacheHit = 99.97;
+  const [spark, setSpark] = useState<number[]>(() =>
+    Array.from({ length: SPARK_POINTS }, (_, i) =>
+      26 + Math.sin(i / 2) * 2 + Math.random() * 2,
+    ),
+  );
+
+  const sparkRef = useRef(spark);
+  sparkRef.current = spark;
+
+  useEffect(() => {
+    if (reduced) return;
+    const a = setInterval(() => {
+      setP99((v) => Math.round(jitter(v, [24, 34], 1.5)));
+      const last = sparkRef.current[sparkRef.current.length - 1] ?? 28;
+      const next = jitter(last, [22, 36], 3);
+      setSpark((s) => [...s.slice(1), next]);
+    }, 2200);
+    const b = setInterval(() => {
+      setRps((v) => +jitter(v, [59.4, 61.2], 0.6).toFixed(1));
+    }, 1700);
+    return () => {
+      clearInterval(a);
+      clearInterval(b);
+    };
+  }, [reduced]);
+
   return (
-    <div
-      className="relative hidden lg:block"
-      style={{ perspective: "1600px" }}
-    >
+    <div className="relative hidden lg:block" style={{ perspective: "1800px" }}>
       <div
-        className="absolute inset-0 opacity-60"
-        style={{ transform: "rotateY(-14deg) rotateX(6deg)", transformOrigin: "center" }}
+        aria-hidden
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(closest-side at 55% 50%, rgba(255,255,255,0.035), transparent 70%)",
+        }}
+      />
+      <motion.div
+        aria-hidden
+        animate={{ opacity: [0.38, 0.5, 0.38] }}
+        transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute inset-0"
+        style={{
+          transform: "perspective(1400px) rotateY(-8deg) rotateX(3deg)",
+          transformOrigin: "center",
+          maskImage:
+            "radial-gradient(ellipse 70% 70% at 55% 50%, black 40%, transparent 85%)",
+          WebkitMaskImage:
+            "radial-gradient(ellipse 70% 70% at 55% 50%, black 40%, transparent 85%)",
+        }}
       >
         <GridOverlay />
-      </div>
+      </motion.div>
 
       <div
-        className="absolute inset-0 flex items-center justify-center"
+        className="absolute inset-0 flex items-center justify-center px-8"
         style={{ transformStyle: "preserve-3d" }}
       >
         <motion.div
-          initial={{ opacity: 0, y: 40, rotateY: -26, rotateX: 14 }}
-          animate={{ opacity: 1, y: 0, rotateY: -16, rotateX: 6 }}
+          initial={{ opacity: 0, y: 30, rotateY: -22, rotateX: 10 }}
+          animate={{ opacity: 1, y: 0, rotateY: -12, rotateX: 6 }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
-          className="relative w-[480px] rounded-xl border border-[var(--color-accent)]/30 bg-[#0d1117] shadow-[0_0_60px_-20px_rgba(45,212,191,0.25)]"
-          style={{ transformStyle: "preserve-3d", transformOrigin: "center" }}
+          className="relative w-[460px]"
+          style={{
+            transformStyle: "preserve-3d",
+            transformOrigin: "center",
+          }}
         >
-          <div className="flex items-center gap-2 border-b border-[var(--color-accent)]/10 px-4 py-3">
-            <span className="h-[10px] w-[10px] rounded-full bg-[#ff5f57]/70" />
-            <span className="h-[10px] w-[10px] rounded-full bg-[#febc2e]/70" />
-            <span className="h-[10px] w-[10px] rounded-full bg-[#28c840]/70" />
-            <span className="ml-3 font-mono text-[11px] text-[var(--color-subtle)]">
-              TileController.java
-            </span>
-          </div>
-          <pre className="overflow-hidden px-5 py-4 font-mono text-[12.5px] leading-[1.7]">
-            {CODE_LINES.map((line, i) => (
-              <div key={i} className="flex gap-4">
-                <span className="w-4 shrink-0 select-none text-right text-[var(--color-subtle)]/40">
-                  {i + 1}
-                </span>
-                <span style={{ paddingLeft: `${line.indent * 16}px` }}>
-                  {line.tokens.map((t, j) => (
-                    <span key={j} className={t.tone ? TONE[t.tone] : "text-[var(--color-text)]"}>
-                      {t.text}
-                    </span>
-                  ))}
-                </span>
-              </div>
-            ))}
-          </pre>
-        </motion.div>
+          <div
+            aria-hidden
+            className="absolute -inset-12 -z-10 rounded-[32px] opacity-70 blur-3xl"
+            style={{
+              background:
+                "radial-gradient(60% 60% at 50% 50%, rgba(16,185,129,0.20), transparent 75%)",
+            }}
+          />
 
-        <motion.div
-          initial={{ opacity: 0, x: 40, rotateY: -30 }}
-          animate={{ opacity: 1, x: 0, rotateY: -14 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.5 }}
-          className="absolute right-[8%] top-[14%] flex h-[64px] w-[64px] items-center justify-center rounded-xl border border-[var(--color-accent)]/40 bg-[var(--color-surface)] font-mono text-[11px] text-[var(--color-accent)] shadow-[0_20px_40px_-15px_rgba(0,0,0,0.6)]"
-          style={{ transform: "translateZ(60px) rotateY(-14deg)" }}
-        >
-          p99
-          <br />
-          80ms
-        </motion.div>
+          <DashboardCard
+            p99={p99}
+            rps={rps}
+            cacheHit={cacheHit}
+            spark={spark}
+          />
 
-        <motion.div
-          initial={{ opacity: 0, x: -40, rotateY: -10 }}
-          animate={{ opacity: 1, x: 0, rotateY: -14 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.6 }}
-          className="absolute bottom-[14%] left-[10%] rounded-lg border border-[var(--color-accent)]/30 bg-[var(--color-surface)] px-3 py-2 font-mono text-[10px] text-[var(--color-muted)] shadow-[0_20px_40px_-15px_rgba(0,0,0,0.6)]"
-          style={{ transform: "translateZ(40px) rotateY(-14deg)" }}
-        >
-          <span className="text-[var(--color-accent)]">●</span> kafka · 60k msg/s
+          <motion.div
+            initial={{ opacity: 0, y: 12, x: 12 }}
+            animate={{ opacity: 1, y: 0, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.55 }}
+            className="absolute -right-16 -top-10 rounded-lg border border-[var(--color-border)] bg-[#0d1117]/95 px-3.5 py-2.5 backdrop-blur shadow-[0_30px_50px_-20px_rgba(0,0,0,0.8)]"
+            style={{ transform: "translateZ(80px)" }}
+          >
+            <div className="flex items-center gap-2">
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-accent)] opacity-60" />
+                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[var(--color-accent)]" />
+              </span>
+              <span className="font-mono text-[10px] uppercase tracking-wider text-[var(--color-muted)]">
+                deploy
+              </span>
+            </div>
+            <div className="mt-1 font-mono text-[12px] text-[var(--color-text)]">
+              v2.34.1 <span className="text-[var(--color-subtle)]">·</span> 4h
+              ago
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 12, x: -12 }}
+            animate={{ opacity: 1, y: 0, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.65 }}
+            className="absolute -bottom-12 -left-16 rounded-lg border border-[var(--color-border)] bg-[#0d1117]/95 px-3.5 py-2.5 backdrop-blur shadow-[0_30px_50px_-20px_rgba(0,0,0,0.8)]"
+            style={{ transform: "translateZ(60px)" }}
+          >
+            <div className="flex items-center gap-3">
+              <span className="font-mono text-[10px] uppercase tracking-wider text-[var(--color-muted)]">
+                regions
+              </span>
+              <span className="font-mono text-[12px] text-[var(--color-text)]">
+                3 active
+              </span>
+            </div>
+            <div className="mt-1.5 flex gap-1">
+              <RegionDot label="eu-west" healthy />
+              <RegionDot label="us-east" healthy />
+              <RegionDot label="ap-south" healthy />
+            </div>
+          </motion.div>
         </motion.div>
       </div>
-
     </div>
+  );
+}
+
+function DashboardCard({
+  p99,
+  rps,
+  cacheHit,
+  spark,
+}: {
+  p99: number;
+  rps: number;
+  cacheHit: number;
+  spark: number[];
+}) {
+  const path = buildSparkPath(spark);
+  return (
+    <div className="rounded-xl border border-[var(--color-border)] bg-[#0d1117]/95 backdrop-blur shadow-[0_30px_80px_-30px_rgba(0,0,0,0.8)]">
+      <header className="flex items-center justify-between border-b border-[var(--color-border)] px-5 py-3">
+        <div className="flex items-center gap-2.5">
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-accent)] opacity-60" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--color-accent)]" />
+          </span>
+          <span className="font-mono text-[12.5px] text-[var(--color-text)]">
+            tile-service
+          </span>
+          <span className="rounded border border-[var(--color-accent)]/30 px-1.5 py-px font-mono text-[10px] uppercase tracking-wider text-[var(--color-accent)]">
+            prod
+          </span>
+        </div>
+        <span className="font-mono text-[10px] uppercase tracking-wider text-[var(--color-subtle)]">
+          live
+        </span>
+      </header>
+
+      <div className="grid grid-cols-3 divide-x divide-[var(--color-border)]">
+        <Metric
+          label="p99 latency"
+          value={`${p99}`}
+          unit="ms"
+          accent="var(--color-accent)"
+          delay={0.4}
+        />
+        <Metric
+          label="throughput"
+          value={formatRps(rps)}
+          unit="req/s"
+          accent="#f59e0b"
+          delay={0.5}
+        />
+        <Metric
+          label="cache hit"
+          value={cacheHit.toFixed(2)}
+          unit="%"
+          accent="#a78bfa"
+          delay={0.6}
+        />
+      </div>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.75 }}
+        className="border-t border-[var(--color-border)] px-5 py-4"
+      >
+        <div className="flex items-baseline justify-between">
+          <span className="font-mono text-[10px] uppercase tracking-wider text-[var(--color-subtle)]">
+            p99 · last 60s
+          </span>
+          <span className="font-mono text-[10px] text-[var(--color-subtle)]">
+            ms
+          </span>
+        </div>
+        <svg
+          viewBox={`0 0 ${SPARK_W} ${SPARK_H}`}
+          preserveAspectRatio="none"
+          className="mt-2 h-[56px] w-full overflow-visible"
+        >
+          <defs>
+            <linearGradient id="sparkFill" x1="0" y1="0" x2="0" y2="1">
+              <stop
+                offset="0%"
+                stopColor="var(--color-accent)"
+                stopOpacity="0.25"
+              />
+              <stop
+                offset="100%"
+                stopColor="var(--color-accent)"
+                stopOpacity="0"
+              />
+            </linearGradient>
+          </defs>
+          <path
+            d={`${path} L ${SPARK_W},${SPARK_H} L 0,${SPARK_H} Z`}
+            fill="url(#sparkFill)"
+            style={{ transition: "d 1.4s ease" }}
+          />
+          <path
+            d={path}
+            fill="none"
+            stroke="var(--color-accent)"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            style={{ transition: "d 1.4s ease" }}
+          />
+        </svg>
+      </motion.div>
+
+      <motion.footer
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.85 }}
+        className="flex items-center justify-between border-t border-[var(--color-border)] px-5 py-2.5"
+      >
+        <span className="font-mono text-[10px] text-[var(--color-subtle)]">
+          ── 2.1B tiles served today
+        </span>
+        <span className="font-mono text-[10px] text-[var(--color-subtle)]">
+          uptime 99.99%
+        </span>
+      </motion.footer>
+    </div>
+  );
+}
+
+function Metric({
+  label,
+  value,
+  unit,
+  accent,
+  delay,
+}: {
+  label: string;
+  value: string;
+  unit: string;
+  accent: string;
+  delay: number;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay, ease: [0.22, 1, 0.36, 1] }}
+      className="px-5 py-4"
+    >
+      <div
+        className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-wider"
+        style={{ color: accent }}
+      >
+        <span
+          className="h-1 w-1 rounded-full"
+          style={{ backgroundColor: accent }}
+        />
+        {label}
+      </div>
+      <div className="mt-2 flex items-baseline gap-1">
+        <span className="font-mono text-[26px] font-semibold tabular-nums text-[var(--color-text)]">
+          {value}
+        </span>
+        <span className="font-mono text-[11px] text-[var(--color-muted)]">
+          {unit}
+        </span>
+      </div>
+    </motion.div>
+  );
+}
+
+function RegionDot({ label, healthy }: { label: string; healthy: boolean }) {
+  return (
+    <span
+      title={label}
+      className={`h-1 w-6 rounded-full ${
+        healthy ? "bg-[var(--color-accent)]/70" : "bg-[var(--color-subtle)]"
+      }`}
+    />
   );
 }

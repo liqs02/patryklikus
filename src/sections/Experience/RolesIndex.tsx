@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { EASE } from "../../lib/motion";
 import {
   EDUCATION,
   MOTOROLA,
@@ -39,7 +40,7 @@ function RoleButton({
       transition={{
         duration: 0.55,
         delay: inView ? 0.5 + index * 0.12 : 0,
-        ease: [0.22, 1, 0.36, 1],
+        ease: EASE,
       }}
       className={
         "group relative block w-full pt-7 pb-8 text-left " +

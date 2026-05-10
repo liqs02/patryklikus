@@ -1,13 +1,7 @@
 import { motion } from "framer-motion";
 import { formatLong } from "../../lib/format";
-import { RECOMMENDATIONS_HREF, THEMES } from "./data";
-
-const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 16 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-10% 0px" },
-  transition: { duration: 0.5, delay, ease: [0.22, 1, 0.36, 1] as const },
-});
+import { fadeUp } from "../../lib/motion";
+import { COPY, RECOMMENDATIONS_HREF, THEMES } from "./data";
 
 export default function BeyondMobile() {
   return (
@@ -23,23 +17,23 @@ export default function BeyondMobile() {
 
       <motion.div {...fadeUp()} className="relative">
         <div className="flex items-center gap-2.5">
-          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-[#f59e0b]">
-            Beyond
+          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-[var(--color-amber)]">
+            {COPY.eyebrow}
           </span>
-          <span aria-hidden className="h-px w-8 bg-[#f59e0b]/40" />
+          <span aria-hidden className="h-px w-8 bg-[var(--color-amber)]/40" />
           <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-[#64748b]">
-            02 / 03
+            {COPY.counter}
           </span>
         </div>
         <h2 className="mt-4 text-[40px] font-bold leading-[1.04] tracking-[-0.02em] text-[var(--color-text)]">
-          Beyond the <span className="text-[#f59e0b]">code</span>.
+          {COPY.titleStart}<span className="text-[var(--color-amber)]">{COPY.titleAccent}</span>{COPY.titleEnd}
         </h2>
         <div
           aria-hidden
-          className="mt-4 h-[3px] w-[64px] rounded-sm bg-[#f59e0b]"
+          className="mt-4 h-[3px] w-[64px] rounded-sm bg-[var(--color-amber)]"
         />
         <p className="mt-4 text-[14px] leading-[1.6] text-[var(--color-muted)]">
-          Three things people keep noticing — paired with the numbers behind them.
+          {COPY.subtitle}
         </p>
       </motion.div>
 
@@ -119,9 +113,9 @@ export default function BeyondMobile() {
           href={RECOMMENDATIONS_HREF}
           target="_blank"
           rel="noreferrer"
-          className="inline-block text-[13px] tracking-[0.3px] text-[#f59e0b] active:opacity-75"
+          className="inline-block text-[13px] tracking-[0.3px] text-[var(--color-amber)] active:opacity-75"
         >
-          View recommendations on LinkedIn →
+          {COPY.cta}
         </a>
       </motion.div>
     </section>

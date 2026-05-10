@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { fadeIn, useSectionInView } from "../../lib/motion";
+import { EASE, fadeIn, useSectionInView } from "../../lib/motion";
 import {
+  COPY,
   GITHUB_PROFILE_HREF,
   LINKEDIN_PROFILE_HREF,
   POSTS,
@@ -22,7 +23,7 @@ export default function Impact() {
         aria-hidden
         initial={{ opacity: 0 }}
         animate={{ opacity: inView ? 1 : 0 }}
-        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+        transition={{ duration: 1.2, ease: EASE, delay: 0.15 }}
         style={{
           background:
             "radial-gradient(circle at 85% 30%, rgba(167,139,250,0.10), transparent 45%), radial-gradient(circle at 12% 78%, rgba(167,139,250,0.06), transparent 48%), radial-gradient(ellipse at 50% 0%, rgba(15,23,42,0.55), transparent 55%)",
@@ -41,15 +42,15 @@ export default function Impact() {
               {...a(0.1)}
               className="flex items-center gap-3 text-[11px] tracking-[0.3em] uppercase"
             >
-              <span style={{ color: VIOLET }}>Impact</span>
+              <span style={{ color: VIOLET }}>{COPY.eyebrow}</span>
               <span aria-hidden className="h-px w-10" style={{ backgroundColor: `${VIOLET}55` }} />
-              <span className="text-[#64748b]">03 / 03</span>
+              <span className="text-[#64748b]">{COPY.counter}</span>
             </motion.div>
             <motion.h2
               {...a(0.18)}
               className="mt-5 text-[64px] font-bold leading-[1.02] tracking-[-0.02em] text-[var(--color-text)]"
             >
-              Sharing <span style={{ color: VIOLET }}>what I learn</span>.
+              {COPY.titleStart}<span style={{ color: VIOLET }}>{COPY.titleAccent}</span>{COPY.titleEnd}
             </motion.h2>
             <motion.div
               initial={{ scaleX: 0 }}
@@ -62,7 +63,7 @@ export default function Impact() {
               {...a(0.4)}
               className="mt-5 max-w-[540px] text-[15px] leading-relaxed text-[var(--color-muted)]"
             >
-              A peer-reviewed paper and a couple of posts that resonated.
+              {COPY.subtitle}
             </motion.p>
           </div>
 
@@ -195,7 +196,7 @@ export default function Impact() {
           className="mt-10 flex items-center justify-between"
         >
           <span className="font-mono text-[10px] uppercase tracking-[0.32em] text-[#64748b]">
-            More on
+            {COPY.moreOn}
           </span>
           <div className="flex items-center gap-10">
             <a

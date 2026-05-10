@@ -61,6 +61,15 @@ export const MOTOROLA: JobCard = {
   ],
 };
 
+export const COPY = {
+  eyebrow: "Experience",
+  counter: "01 / 03",
+  titleStart: "Where I've ",
+  titleAccent: "built",
+  titleEnd: " things.",
+  subtitle: "Two roles, many projects — the work that shaped the engineer.",
+};
+
 export const EDUCATION = {
   line1: "Cracow University of Technology · Computer Science",
   line2: "Graduated Jun 2025  ·  while working full-time",
@@ -79,6 +88,7 @@ export const PROJECTS: Record<ProjectKey, ProjectDetail> = {
   overture: {
     caption: "TomTom · Project",
     logo: "overture",
+    title: "Overture Maps",
     description: [
       "Co-led the data ingestion pipeline that powers the Overture Maps Foundation's open base map — the next-generation, openly licensed map data used by AWS, Microsoft, Meta, and TomTom.",
       "Designed for planet-scale: hundreds of millions of features, complex conflation across providers, reproducible builds.",

@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import AccentUnderline from "../../components/AccentUnderline";
 import { fadeIn, useSectionInView } from "../../lib/motion";
 import {
   GITHUB_PROFILE_HREF,
@@ -9,122 +7,180 @@ import {
   PUBLICATION,
 } from "./data";
 
-const HOVER_READY =
-  "transition-all duration-300 hover:-translate-y-1 hover:border-[var(--color-accent)]/30 hover:shadow-[0_12px_30px_-12px_rgba(45,212,191,0.25)]";
+const VIOLET = "#a78bfa";
 
 export default function Impact() {
   const { sectionRef, inView } = useSectionInView();
-  const [hoverReady, setHoverReady] = useState(false);
-
-  useEffect(() => {
-    if (!inView) {
-      setHoverReady(false);
-      return;
-    }
-    const t = setTimeout(() => setHoverReady(true), 1300);
-    return () => clearTimeout(t);
-  }, [inView]);
-
   const a = (delay: number) => fadeIn(inView, delay);
 
   return (
     <section
       ref={sectionRef}
-      className="relative hidden h-screen w-full lg:block lg:[scroll-snap-align:start] lg:[scroll-snap-stop:always]"
+      className="relative hidden h-screen w-full overflow-hidden bg-[var(--color-bg)] lg:block lg:[scroll-snap-align:start] lg:[scroll-snap-stop:always]"
     >
-      <div className="mx-auto flex h-full max-w-[1500px] flex-col px-12 pt-[10vh] pb-14 xl:px-20">
-        <div className="max-w-[700px]">
-          <motion.p
-            {...a(0.1)}
-            className="text-[11px] text-[var(--color-accent)]"
-          >
-            Impact
-          </motion.p>
-          <motion.h2
-            {...a(0.15)}
-            className="mt-4 text-[44px] font-bold leading-tight text-[var(--color-text)]"
-          >
-            Sharing what I learn
-          </motion.h2>
-          <AccentUnderline inView={inView} />
-          <motion.p
-            {...a(0.35)}
-            className="mt-4 text-[15px] text-[var(--color-muted)]"
-          >
-            A peer-reviewed paper and a couple of posts that resonated.
-          </motion.p>
+      <motion.div
+        aria-hidden
+        initial={{ opacity: 0 }}
+        animate={{ opacity: inView ? 1 : 0 }}
+        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+        style={{
+          background:
+            "radial-gradient(circle at 85% 30%, rgba(167,139,250,0.10), transparent 45%), radial-gradient(circle at 12% 78%, rgba(167,139,250,0.06), transparent 48%), radial-gradient(ellipse at 50% 0%, rgba(15,23,42,0.55), transparent 55%)",
+        }}
+        className="pointer-events-none absolute inset-0"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#1e293b] to-transparent"
+      />
+
+      <div className="relative mx-auto flex h-full max-w-[1500px] flex-col px-12 pt-[10vh] pb-14 xl:px-20">
+        <div className="flex items-end justify-between">
+          <div className="max-w-[760px]">
+            <motion.div
+              {...a(0.1)}
+              className="flex items-center gap-3 text-[11px] tracking-[0.3em] uppercase"
+            >
+              <span style={{ color: VIOLET }}>Impact</span>
+              <span aria-hidden className="h-px w-10" style={{ backgroundColor: `${VIOLET}55` }} />
+              <span className="text-[#64748b]">03 / 03</span>
+            </motion.div>
+            <motion.h2
+              {...a(0.18)}
+              className="mt-5 text-[64px] font-bold leading-[1.02] tracking-[-0.02em] text-[var(--color-text)]"
+            >
+              Sharing <span style={{ color: VIOLET }}>what I learn</span>.
+            </motion.h2>
+            <motion.div
+              initial={{ scaleX: 0 }}
+              animate={inView ? { scaleX: 1 } : { scaleX: 0 }}
+              transition={{ duration: 0.5, delay: inView ? 0.3 : 0 }}
+              style={{ transformOrigin: "left", backgroundColor: VIOLET }}
+              className="mt-4 h-[3px] w-[88px] rounded-sm"
+            />
+            <motion.p
+              {...a(0.4)}
+              className="mt-5 max-w-[540px] text-[15px] leading-relaxed text-[var(--color-muted)]"
+            >
+              A peer-reviewed paper and a couple of posts that resonated.
+            </motion.p>
+          </div>
+
         </div>
 
-        <div className="flex flex-1 flex-col justify-center">
-          <div className="mx-auto grid w-full max-w-[1280px] grid-cols-[1.25fr_1fr] gap-8">
+        <div className="mt-14 flex flex-1 items-start">
+          <div className="grid w-full grid-cols-12 gap-x-12 gap-y-10">
+            {/* Featured publication — editorial column, no card chrome */}
             <motion.a
-              {...a(0.4)}
+              {...a(0.5)}
               href={PUBLICATION.href}
               target="_blank"
               rel="noreferrer"
-              className={`group relative flex flex-col rounded-xl border border-[#1e293b] bg-[#0e1116] p-7 ${hoverReady ? HOVER_READY : ""}`}
+              className="group relative col-span-7 flex flex-col"
+              style={{ ["--violet" as string]: VIOLET }}
             >
-              <span className="inline-flex h-[26px] w-fit items-center rounded-[13px] border border-[var(--color-accent)]/40 bg-[var(--color-accent)]/[0.12] px-3 text-[10px] font-medium uppercase tracking-[1.2px] text-[var(--color-accent)]">
-                {PUBLICATION.chip}
-              </span>
-              <p className="mt-6 text-xs uppercase tracking-[0.4px] text-[var(--color-muted)]/90">
+              <div className="flex items-baseline gap-5">
+                <span className="font-mono text-[11px] tracking-[0.3em] text-[#64748b]">01</span>
+                <span aria-hidden className="h-px flex-1 bg-[#1e293b]" />
+                <span
+                  className="text-[10px] font-medium uppercase tracking-[0.28em]"
+                  style={{ color: VIOLET }}
+                >
+                  {PUBLICATION.chip}
+                </span>
+              </div>
+
+              <p className="mt-7 text-[10.5px] uppercase tracking-[0.32em] text-[#64748b]">
                 {PUBLICATION.venue}
               </p>
-              <h3 className="mt-3 text-[28px] font-bold leading-tight text-[var(--color-text)]">
+              <h3
+                className="mt-3 text-[40px] font-bold leading-[1.05] tracking-[-0.015em] text-[var(--color-text)] transition-colors duration-300 group-hover:text-[color:var(--violet)]"
+              >
                 {PUBLICATION.title}
               </h3>
-              <p className="mt-4 text-[13px] text-[#cbd5e1]/85">
+              <p className="mt-3 text-[12.5px] tracking-[0.02em] text-[#cbd5e1]/75">
                 {PUBLICATION.authors}
               </p>
-              <p className="mt-3 text-sm leading-snug text-[#cbd5e1]/85">
+
+              <p className="mt-6 max-w-[640px] text-[13.5px] leading-[1.7] text-[#cbd5e1]/80">
                 {PUBLICATION.abstractFull}
               </p>
 
-              <div className="mt-5 flex border-l-[3px] border-[var(--color-accent)]/60 pl-4">
-                <div>
-                  <p className="text-[9px] font-bold uppercase tracking-[1.2px] text-[var(--color-accent)]/90">
-                    KEY FINDING
-                  </p>
-                  <p className="mt-1.5 text-[13px] text-[var(--color-text)]/90">
-                    {PUBLICATION.keyFinding}
-                  </p>
-                </div>
+              <div className="mt-7 flex items-baseline gap-4">
+                <span
+                  className="font-mono text-[10px] uppercase tracking-[0.3em] whitespace-nowrap"
+                  style={{ color: VIOLET }}
+                >
+                  — Finding
+                </span>
+                <p className="text-[16px] italic leading-[1.55] text-[var(--color-text)]/95">
+                  {PUBLICATION.keyFinding}
+                </p>
               </div>
 
-              <div className="mt-auto flex items-baseline justify-between pt-5">
-                <span className="text-[11px] text-[var(--color-muted)]/50">
+              <div className="mt-7 flex items-baseline justify-between">
+                <span className="font-mono text-[10.5px] tracking-[0.08em] text-[#64748b]">
                   {PUBLICATION.hint}
                 </span>
-                <span className="text-sm text-[var(--color-accent)]">
+                <span
+                  className="text-sm tracking-[0.02em] transition-transform duration-300 group-hover:translate-x-1"
+                  style={{ color: VIOLET }}
+                >
                   {PUBLICATION.cta} →
                 </span>
               </div>
             </motion.a>
 
-            <div className="flex flex-col gap-6">
+            {/* Posts — index list with hairlines */}
+            <div className="col-span-5 flex flex-col">
               {POSTS.map((p, i) => (
                 <motion.a
                   key={p.title}
-                  {...a(0.5 + i * 0.08)}
+                  {...a(0.62 + i * 0.1)}
                   href={p.href}
                   target="_blank"
                   rel="noreferrer"
-                  className={`group relative flex h-[190px] flex-col rounded-xl border border-[#1e293b] bg-[#0e1116] p-5 ${hoverReady ? HOVER_READY : ""}`}
+                  className="group relative flex flex-col py-7"
+                  style={{ ["--violet" as string]: VIOLET }}
                 >
-                  <p className="text-[9px] font-medium uppercase tracking-[1px] text-[var(--color-accent)]/80">
-                    {p.tag}
-                  </p>
-                  <h4 className="mt-2 text-lg leading-tight text-[var(--color-text)]">
+                  {i === 0 && (
+                    <span aria-hidden className="absolute inset-x-0 top-0 h-px bg-[#1e293b]" />
+                  )}
+                  <span aria-hidden className="absolute inset-x-0 bottom-0 h-px bg-[#1e293b]" />
+                  <span
+                    aria-hidden
+                    className="absolute inset-x-0 bottom-0 h-px origin-left scale-x-0 transition-transform duration-500 group-hover:scale-x-100"
+                    style={{ backgroundColor: VIOLET }}
+                  />
+
+                  <div className="flex items-baseline gap-4">
+                    <span className="font-mono text-[11px] tracking-[0.3em] text-[#64748b]">
+                      0{i + 2}
+                    </span>
+                    <p
+                      className="text-[9.5px] font-medium uppercase tracking-[0.22em] text-[#94a3b8]/85"
+                    >
+                      {p.tag}
+                    </p>
+                  </div>
+
+                  <h4
+                    className="mt-3 text-[20px] font-semibold leading-[1.2] tracking-[-0.005em] text-[var(--color-text)] transition-colors duration-300 group-hover:text-[color:var(--violet)]"
+                  >
                     {p.title}
                   </h4>
-                  <p className="mt-4 text-[13px] leading-snug text-[#cbd5e1]/70">
+                  <p className="mt-2 text-[12.5px] leading-[1.55] text-[#cbd5e1]/70">
                     {p.snippet}
                   </p>
-                  <div className="mt-auto flex items-baseline justify-between">
-                    <span className="text-[11px] tracking-[0.3px] text-[#94a3b8]/70">
+
+                  <div className="mt-4 flex items-baseline justify-between">
+                    <span className="font-mono text-[10.5px] tracking-[0.08em] text-[#94a3b8]/70">
                       {p.metric}
                     </span>
-                    <span className="text-xs text-[var(--color-accent)]/90">
+                    <span
+                      className="text-xs tracking-[0.02em] transition-transform duration-300 group-hover:translate-x-1"
+                      style={{ color: VIOLET }}
+                    >
                       Read →
                     </span>
                   </div>
@@ -132,29 +188,37 @@ export default function Impact() {
               ))}
             </div>
           </div>
+        </div>
 
-          <motion.div
-            {...a(0.7)}
-            className="mx-auto mt-10 flex w-full max-w-[1280px] items-center justify-center gap-12"
-          >
+        <motion.div
+          {...a(0.85)}
+          className="mt-10 flex items-center justify-between"
+        >
+          <span className="font-mono text-[10px] uppercase tracking-[0.32em] text-[#64748b]">
+            More on
+          </span>
+          <div className="flex items-center gap-10">
             <a
               href={LINKEDIN_PROFILE_HREF}
               target="_blank"
               rel="noreferrer"
-              className="text-[15px] tracking-[0.2px] text-[var(--color-accent)] transition-opacity hover:opacity-80"
+              className="text-[14px] tracking-[0.02em] text-[var(--color-text)]/85 transition-colors hover:text-[color:var(--violet)]"
+              style={{ ["--violet" as string]: VIOLET }}
             >
               LinkedIn →
             </a>
+            <span aria-hidden className="h-px w-12 bg-[#1e293b]" />
             <a
               href={GITHUB_PROFILE_HREF}
               target="_blank"
               rel="noreferrer"
-              className="text-[15px] tracking-[0.2px] text-[var(--color-accent)] transition-opacity hover:opacity-80"
+              className="text-[14px] tracking-[0.02em] text-[var(--color-text)]/85 transition-colors hover:text-[color:var(--violet)]"
+              style={{ ["--violet" as string]: VIOLET }}
             >
               GitHub →
             </a>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

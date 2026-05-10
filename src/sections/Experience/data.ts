@@ -28,6 +28,7 @@ export type JobCard = {
   company: string;
   role: string;
   description?: string;
+  tech: string[];
   chips: Chip[];
   active?: boolean;
 };
@@ -37,8 +38,8 @@ export const TOMTOM: JobCard = {
   period: { startYear: 2025, end: "present" },
   company: "TomTom",
   role: "Software Engineer II",
-  description:
-    "Backend for the world's mapping data. Overture powers global apps; Orbis is a centimeter-precision map for self-driving cars.",
+  description: "Backend for the world's mapping data.",
+  tech: ["Java", "Spring Boot", "Kubernetes", "PostgreSQL", "Kafka"],
   chips: [
     { key: "overture", label: "Overture Maps" },
     { key: "orbis", label: "Orbis Maps" },
@@ -51,8 +52,8 @@ export const MOTOROLA: JobCard = {
   period: { startYear: 2023, end: { year: 2025, month: 6 } },
   company: "Motorola Solutions",
   role: "Software Engineer",
-  description:
-    "Geo-redundant architecture for AI emergency dispatch. FedRAMP-compliant systems for US public safety. 24/7 production ownership.",
+  description: "Backend for U.S. security forces — mission-critical, FedRAMP-compliant systems.",
+  tech: ["Java", "Spring Boot", "AWS", "Terraform", "PostgreSQL"],
   chips: [
     { key: "ai-dispatch", label: "AI Dispatch" },
     { key: "geo-redundancy", label: "Geo-redundancy" },

@@ -53,12 +53,12 @@ export default function Research() {
                       boxShadow: "0 0 5px #10b981cc, 0 0 10px #10b98166",
                     }}
                   />
-                  <span className="font-mono text-[10.5px] font-medium uppercase tracking-[0.32em] text-[#cbd5e1]/85">
+                  <span className="font-medium text-[10.5px] font-medium uppercase tracking-[0.32em] text-[#cbd5e1]/85">
                     {PUBLICATION.chip}
                   </span>
                 </span>
                 <span aria-hidden className="h-px w-6 bg-[#1e293b]" />
-                <span className="font-mono text-[10.5px] uppercase tracking-[0.32em] text-[#64748b]">
+                <span className="font-medium text-[10.5px] uppercase tracking-[0.32em] text-[#64748b]">
                   {PUBLICATION.venue}
                 </span>
               </motion.div>
@@ -85,7 +85,7 @@ export default function Research() {
 
             <motion.div {...a(0.6)} className="mt-8">
               <span
-                className="font-mono text-[10px] uppercase tracking-[0.32em]"
+                className="font-medium text-[10px] uppercase tracking-[0.32em]"
                 style={{ color: VIOLET }}
               >
                 Finding
@@ -99,7 +99,7 @@ export default function Research() {
               {...a(0.7)}
               className="mt-12 flex items-baseline gap-5"
             >
-              <span className="font-mono text-[10.5px] tracking-[0.08em] text-[#64748b]">
+              <span className="font-medium text-[10.5px] tracking-[0.08em] text-[#64748b]">
                 {PUBLICATION.hint}
               </span>
               <span aria-hidden className="h-px w-10 bg-[#1e293b]" />
@@ -127,7 +127,7 @@ export default function Research() {
           {...a(0.85)}
           className="mt-10 flex items-center justify-between"
         >
-          <span className="font-mono text-[10px] uppercase tracking-[0.32em] text-[#64748b]">
+          <span className="font-medium text-[10px] uppercase tracking-[0.32em] text-[#64748b]">
             {COPY.moreOn}
           </span>
           <div className="flex items-center gap-10">

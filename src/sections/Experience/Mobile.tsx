@@ -87,7 +87,7 @@ function ProjectBlock({ projectKey }: { projectKey: ProjectKey }) {
                 <div className="mt-4 border-t border-[#1e293b]/70 pt-3">
                   <div className="flex items-baseline gap-2.5">
                     <span aria-hidden className="h-px w-4 bg-[var(--color-accent)]/40" />
-                    <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-[var(--color-accent)]">
+                    <p className="font-medium text-[9px] uppercase tracking-[0.3em] text-[var(--color-accent)]">
                       Used by
                     </p>
                   </div>
@@ -132,7 +132,7 @@ function JobBlock({ job, active }: { job: JobCard; active?: boolean }) {
       <div className="flex items-center gap-2.5">
         <span
           className={
-            "font-mono text-[10px] uppercase tracking-[0.22em] " +
+            "font-medium text-[10px] uppercase tracking-[0.22em] " +
             (active ? "text-[var(--color-accent)]" : "text-[#94a3b8]")
           }
         >
@@ -160,7 +160,7 @@ function JobBlock({ job, active }: { job: JobCard; active?: boolean }) {
       <div className="mt-9">
         <div className="mb-3 flex items-center gap-2.5">
           <span aria-hidden className="h-px w-4 bg-[var(--color-accent)]/40" />
-          <p className="font-mono text-[9.5px] uppercase tracking-[0.3em] text-[var(--color-accent)]">
+          <p className="font-medium text-[9.5px] uppercase tracking-[0.3em] text-[var(--color-accent)]">
             Projects
           </p>
         </div>
@@ -201,7 +201,7 @@ export default function ExperienceMobile() {
           className="relative mt-14 border-y border-[#1e293b] py-7"
           aria-label="Education milestone"
         >
-          <span className="font-mono text-[10px] uppercase tracking-[0.22em] leading-[1.7] text-[#94a3b8]/85">
+          <span className="font-medium text-[10px] uppercase tracking-[0.22em] leading-[1.7] text-[#94a3b8]/85">
             {EDUCATION.line1}
             <br />
             {EDUCATION.line2}

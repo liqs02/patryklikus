@@ -128,7 +128,7 @@ export default function LeftPanel() {
                 )}
               </span>
               <span className="text-[var(--color-text)]">{job.title}</span>
-              <span className="font-mono text-[12px] text-[var(--color-subtle)]">
+              <span className="font-medium text-[12px] text-[var(--color-subtle)]">
                 {job.year}
               </span>
             </li>
@@ -137,7 +137,7 @@ export default function LeftPanel() {
 
         <motion.p
           {...slideIn(0.96)}
-          className="mt-8 font-mono text-[13px] leading-relaxed tracking-wide text-[#cbd5e1]/85"
+          className="mt-8 font-medium text-[13px] leading-relaxed tracking-wide text-[#cbd5e1]/85"
         >
           {SKILLS_DESKTOP.map((s, i) => (
             <span key={s}>
@@ -221,7 +221,7 @@ function EdgeMarkers() {
       >
         <span className="h-12 w-px bg-gradient-to-b from-transparent to-[#94a3b8]/30" />
         <span
-          className="font-mono text-[10px] uppercase tracking-[0.32em] text-[#64748b]"
+          className="font-medium text-[10px] uppercase tracking-[0.32em] text-[#64748b]"
           style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
         >
           Index · 00 / 03

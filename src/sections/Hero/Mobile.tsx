@@ -154,7 +154,7 @@ export default function HeroMobile() {
       >
         <div className="flex items-center gap-2.5">
           <span aria-hidden className="h-px w-5 bg-[var(--color-accent)]/40" />
-          <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-[var(--color-accent)]">
+          <p className="font-medium text-[10px] uppercase tracking-[0.3em] text-[var(--color-accent)]">
             Roles
           </p>
         </div>
@@ -177,11 +177,11 @@ export default function HeroMobile() {
       >
         <div className="flex items-center gap-2.5">
           <span aria-hidden className="h-px w-5 bg-[#94a3b8]/30" />
-          <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-[#64748b]">
+          <p className="font-medium text-[10px] uppercase tracking-[0.3em] text-[#64748b]">
             Stack
           </p>
         </div>
-        <p className="mt-3 font-mono text-[12.5px] leading-[1.9] tracking-wide text-[#cbd5e1]/85">
+        <p className="mt-3 font-medium text-[12.5px] leading-[1.9] tracking-wide text-[#cbd5e1]/85">
           {SKILLS_MOBILE.map((s, i) => (
             <span key={s}>
               {i > 0 && <span className="text-[var(--color-amber)]/70">{"  ·  "}</span>}
@@ -203,14 +203,14 @@ export default function HeroMobile() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-accent)] opacity-60" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--color-accent)]" />
             </span>
-            <span className="font-mono text-[12px] text-[var(--color-text)]">
+            <span className="font-medium text-[12px] text-[var(--color-text)]">
               {DASHBOARD.service}
             </span>
-            <span className="rounded border border-[var(--color-accent)]/30 px-1.5 py-px font-mono text-[9px] uppercase tracking-wider text-[var(--color-accent)]">
+            <span className="rounded border border-[var(--color-accent)]/30 px-1.5 py-px font-medium text-[9px] uppercase tracking-wider text-[var(--color-accent)]">
               {DASHBOARD.env}
             </span>
           </div>
-          <span className="font-mono text-[9px] uppercase tracking-wider text-[var(--color-subtle)]">
+          <span className="font-medium text-[9px] uppercase tracking-wider text-[var(--color-subtle)]">
             {DASHBOARD.status}
           </span>
         </header>
@@ -223,10 +223,10 @@ export default function HeroMobile() {
 
         <div className="border-t border-[var(--color-border)] px-4 py-3">
           <div className="flex items-baseline justify-between">
-            <span className="font-mono text-[9px] uppercase tracking-wider text-[var(--color-subtle)]">
+            <span className="font-medium text-[9px] uppercase tracking-wider text-[var(--color-subtle)]">
               p99 · last 60s
             </span>
-            <span className="font-mono text-[9px] text-[var(--color-subtle)]">
+            <span className="font-medium text-[9px] text-[var(--color-subtle)]">
               ms
             </span>
           </div>
@@ -259,10 +259,10 @@ export default function HeroMobile() {
         </div>
 
         <footer className="flex items-center justify-between border-t border-[var(--color-border)] px-4 py-2">
-          <span className="font-mono text-[9px] text-[var(--color-subtle)]">
+          <span className="font-medium text-[9px] text-[var(--color-subtle)]">
             {DASHBOARD.footerLeft}
           </span>
-          <span className="font-mono text-[9px] text-[var(--color-subtle)]">
+          <span className="font-medium text-[9px] text-[var(--color-subtle)]">
             {DASHBOARD.footerRight}
           </span>
         </footer>
@@ -310,15 +310,15 @@ function Metric({
   return (
     <div className="flex flex-col items-center px-2 py-2.5">
       <div className="flex items-baseline gap-1">
-        <span className="font-mono text-[16px] font-semibold tabular-nums text-[var(--color-text)]">
+        <span className="font-medium text-[16px] font-semibold tabular-nums text-[var(--color-text)]">
           {value}
         </span>
-        <span className="font-mono text-[9px] text-[var(--color-muted)]">
+        <span className="font-medium text-[9px] text-[var(--color-muted)]">
           {unit}
         </span>
       </div>
       <div
-        className="mt-1 flex items-center gap-1 font-mono text-[8.5px] uppercase tracking-[0.18em]"
+        className="mt-1 flex items-center gap-1 font-medium text-[8.5px] uppercase tracking-[0.18em]"
         style={{ color: accent }}
       >
         <span

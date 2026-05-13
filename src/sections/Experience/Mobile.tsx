@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import overtureLogo from "../../assets/overture-logo.svg";
 import { EASE, fadeUp } from "../../lib/motion";
+import { renderHighlights } from "../../lib/highlights";
 import {
   COPY,
   EDUCATION,
@@ -77,7 +78,7 @@ function ProjectBlock({ projectKey }: { projectKey: ProjectKey }) {
               <div className={(p.logo && LOGOS[p.logo] ? "mt-3 " : "") + "space-y-2.5"}>
                 {p.description.map((par, i) => (
                   <p key={i} className="text-[13.5px] leading-[1.65] text-[#cbd5e1]/85">
-                    {par}
+                    {renderHighlights(par)}
                   </p>
                 ))}
               </div>
@@ -152,7 +153,7 @@ function JobBlock({ job, active }: { job: JobCard; active?: boolean }) {
       </p>
       {job.description && (
         <p className="mt-3 text-[13.5px] leading-[1.6] text-[#cbd5e1]/80">
-          {job.description}
+          {renderHighlights(job.description)}
         </p>
       )}
 

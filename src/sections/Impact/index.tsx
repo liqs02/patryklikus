@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
+import { renderHighlights } from "../../lib/highlights";
 import { EASE, fadeIn, useSectionInView } from "../../lib/motion";
+import CPU from "./CPU";
 import {
   COPY,
   GITHUB_PROFILE_HREF,
   LINKEDIN_PROFILE_HREF,
-  POSTS,
   PUBLICATION,
 } from "./data";
 
@@ -35,159 +36,90 @@ export default function Impact() {
         className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#1e293b] to-transparent"
       />
 
-      <div className="relative mx-auto flex min-h-screen max-w-[1500px] flex-col px-12 pt-[10vh] pb-14 xl:px-20">
-        <div className="flex items-end justify-between">
-          <div className="max-w-[760px]">
-            <motion.div
-              {...a(0.1)}
-              className="flex items-center gap-3 text-[11px] tracking-[0.3em] uppercase"
-            >
-              <span style={{ color: VIOLET }}>{COPY.eyebrow}</span>
-              <span aria-hidden className="h-px w-10" style={{ backgroundColor: `${VIOLET}55` }} />
-              <span className="text-[#64748b]">{COPY.counter}</span>
-            </motion.div>
-            <motion.h2
-              {...a(0.18)}
-              className="mt-5 text-[64px] font-bold leading-[1.02] tracking-[-0.02em] text-[var(--color-text)]"
-            >
-              {COPY.titleStart}<span style={{ color: VIOLET }}>{COPY.titleAccent}</span>{COPY.titleEnd}
-            </motion.h2>
-            <motion.div
-              initial={{ scaleX: 0 }}
-              animate={inView ? { scaleX: 1 } : { scaleX: 0 }}
-              transition={{ duration: 0.5, delay: inView ? 0.3 : 0 }}
-              style={{ transformOrigin: "left", backgroundColor: VIOLET }}
-              className="mt-4 h-[3px] w-[88px] rounded-sm"
-            />
-            <motion.p
-              {...a(0.4)}
-              className="mt-5 max-w-[540px] text-[15px] leading-relaxed text-[var(--color-muted)]"
-            >
-              {COPY.subtitle}
-            </motion.p>
-          </div>
-
-        </div>
-
-        <div className="mt-14 flex flex-1 items-start">
-          <div className="grid w-full grid-cols-12 gap-x-12 gap-y-10">
-            {/* Featured publication — editorial column, no card chrome */}
-            <motion.a
-              {...a(0.5)}
-              href={PUBLICATION.href}
-              target="_blank"
-              rel="noreferrer"
-              className="group relative col-span-7 flex flex-col"
-              style={{ ["--violet" as string]: VIOLET }}
-            >
-              <div className="flex items-baseline gap-5">
-                <span className="font-mono text-[11px] tracking-[0.3em] text-[#64748b]">01</span>
-                <span aria-hidden className="h-px flex-1 bg-[#1e293b]" />
-                <span
-                  className="text-[10px] font-medium uppercase tracking-[0.28em]"
-                  style={{ color: VIOLET }}
-                >
-                  {PUBLICATION.chip}
+      <div className="relative mx-auto flex min-h-screen max-w-[1500px] flex-col px-12 pb-14 xl:px-20">
+        <div className="flex flex-1 items-center">
+          <div className="grid w-full grid-cols-12 items-center gap-x-16">
+            <div className="col-span-8 flex flex-col">
+              <motion.div
+                {...a(0.1)}
+                aria-hidden
+                className="mb-7 flex flex-wrap items-center gap-x-4 gap-y-2"
+              >
+                <span className="inline-flex items-center gap-2">
+                  <span
+                    className="h-[7px] w-[7px] rounded-full"
+                    style={{
+                      backgroundColor: "#10b981",
+                      boxShadow: "0 0 5px #10b981cc, 0 0 10px #10b98166",
+                    }}
+                  />
+                  <span className="font-mono text-[10.5px] font-medium uppercase tracking-[0.32em] text-[#cbd5e1]/85">
+                    {PUBLICATION.chip}
+                  </span>
                 </span>
-              </div>
-
-              <p className="mt-7 text-[10.5px] uppercase tracking-[0.32em] text-[#64748b]">
-                {PUBLICATION.venue}
-              </p>
-              <h3
-                className="mt-3 text-[40px] font-bold leading-[1.05] tracking-[-0.015em] text-[var(--color-text)] transition-colors duration-300 group-hover:text-[color:var(--violet)]"
+                <span aria-hidden className="h-px w-6 bg-[#1e293b]" />
+                <span className="font-mono text-[10.5px] uppercase tracking-[0.32em] text-[#64748b]">
+                  {PUBLICATION.venue}
+                </span>
+              </motion.div>
+              <motion.h2
+                {...a(0.18)}
+                className="text-[60px] font-bold leading-[1.05] tracking-[-0.02em] text-[var(--color-text)]"
               >
                 {PUBLICATION.title}
-              </h3>
-              <p className="mt-3 text-[12.5px] tracking-[0.02em] text-[#cbd5e1]/75">
+              </motion.h2>
+
+              <motion.p
+                {...a(0.34)}
+                className="mt-6 text-[13.5px] tracking-[0.02em] text-[#cbd5e1]/75"
+              >
                 {PUBLICATION.authors}
+              </motion.p>
+
+              <motion.p
+                {...a(0.44)}
+                className="mt-6 max-w-[600px] text-[17px] leading-[1.55] text-[var(--color-muted)]"
+              >
+                {renderHighlights(PUBLICATION.abstract)}
+              </motion.p>
+
+            <motion.div {...a(0.6)} className="mt-8">
+              <span
+                className="font-mono text-[10px] uppercase tracking-[0.32em]"
+                style={{ color: VIOLET }}
+              >
+                Finding
+              </span>
+              <p className="mt-3 max-w-[560px] text-[17px] italic leading-[1.5] text-[var(--color-text)]/95">
+                {PUBLICATION.keyFinding}
               </p>
+            </motion.div>
 
-              <p className="mt-6 max-w-[640px] text-[13.5px] leading-[1.7] text-[#cbd5e1]/80">
-                {PUBLICATION.abstractFull}
-              </p>
-
-              <div className="mt-7 flex items-baseline gap-4">
-                <span
-                  className="font-mono text-[10px] uppercase tracking-[0.3em] whitespace-nowrap"
-                  style={{ color: VIOLET }}
-                >
-                  — Finding
-                </span>
-                <p className="text-[16px] italic leading-[1.55] text-[var(--color-text)]/95">
-                  {PUBLICATION.keyFinding}
-                </p>
-              </div>
-
-              <div className="mt-7 flex items-baseline justify-between">
-                <span className="font-mono text-[10.5px] tracking-[0.08em] text-[#64748b]">
-                  {PUBLICATION.hint}
-                </span>
-                <span
-                  className="text-sm tracking-[0.02em] transition-transform duration-300 group-hover:translate-x-1"
-                  style={{ color: VIOLET }}
-                >
+            <motion.div
+              {...a(0.7)}
+              className="mt-12 flex items-baseline gap-5"
+            >
+              <span className="font-mono text-[10.5px] tracking-[0.08em] text-[#64748b]">
+                {PUBLICATION.hint}
+              </span>
+              <span aria-hidden className="h-px w-10 bg-[#1e293b]" />
+              <a
+                href={PUBLICATION.href}
+                target="_blank"
+                rel="noreferrer"
+                className="group inline-flex items-center text-[17px] tracking-[0.01em] transition-colors"
+                style={{ color: VIOLET, ["--violet" as string]: VIOLET }}
+              >
+                <span className="transition-transform duration-300 group-hover:translate-x-1">
                   {PUBLICATION.cta} →
                 </span>
-              </div>
-            </motion.a>
+              </a>
+            </motion.div>
+          </div>
 
-            {/* Posts — index list with hairlines */}
-            <div className="col-span-5 flex flex-col">
-              {POSTS.map((p, i) => (
-                <motion.a
-                  key={p.title}
-                  {...a(0.62 + i * 0.1)}
-                  href={p.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="group relative flex flex-col py-7"
-                  style={{ ["--violet" as string]: VIOLET }}
-                >
-                  {i === 0 && (
-                    <span aria-hidden className="absolute inset-x-0 top-0 h-px bg-[#1e293b]" />
-                  )}
-                  <span aria-hidden className="absolute inset-x-0 bottom-0 h-px bg-[#1e293b]" />
-                  <span
-                    aria-hidden
-                    className="absolute inset-x-0 bottom-0 h-px origin-left scale-x-0 transition-transform duration-500 group-hover:scale-x-100"
-                    style={{ backgroundColor: VIOLET }}
-                  />
-
-                  <div className="flex items-baseline gap-4">
-                    <span className="font-mono text-[11px] tracking-[0.3em] text-[#64748b]">
-                      0{i + 2}
-                    </span>
-                    <p
-                      className="text-[9.5px] font-medium uppercase tracking-[0.22em] text-[#94a3b8]/85"
-                    >
-                      {p.tag}
-                    </p>
-                  </div>
-
-                  <h4
-                    className="mt-3 text-[20px] font-semibold leading-[1.2] tracking-[-0.005em] text-[var(--color-text)] transition-colors duration-300 group-hover:text-[color:var(--violet)]"
-                  >
-                    {p.title}
-                  </h4>
-                  <p className="mt-2 text-[12.5px] leading-[1.55] text-[#cbd5e1]/70">
-                    {p.snippet}
-                  </p>
-
-                  <div className="mt-4 flex items-baseline justify-between">
-                    <span className="font-mono text-[10.5px] tracking-[0.08em] text-[#94a3b8]/70">
-                      {p.metric}
-                    </span>
-                    <span
-                      className="text-xs tracking-[0.02em] transition-transform duration-300 group-hover:translate-x-1"
-                      style={{ color: VIOLET }}
-                    >
-                      Read →
-                    </span>
-                  </div>
-                </motion.a>
-              ))}
-            </div>
+            <motion.div {...a(0.5)} className="col-span-4">
+              <CPU />
+            </motion.div>
           </div>
         </div>
 

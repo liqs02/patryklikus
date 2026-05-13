@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import overtureLogo from "../../assets/overture-logo.svg";
 import { EASE } from "../../lib/motion";
+import { renderHighlights } from "../../lib/highlights";
 import { PROJECTS, type JobCard, type ProjectKey } from "./data";
 
 type Props = {
@@ -112,7 +113,7 @@ export default function FeaturePanel({ inView, selected, activeJob, onSelect }: 
           <div className="mt-6 max-w-[640px] space-y-3.5">
             {project.description.map((p, i) => (
               <p key={i} className="text-[14px] leading-[1.7] text-[#cbd5e1]/85">
-                {p}
+                {renderHighlights(p)}
               </p>
             ))}
           </div>

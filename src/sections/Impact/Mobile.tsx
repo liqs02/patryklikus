@@ -1,159 +1,117 @@
 import { motion } from "framer-motion";
+import CPU from "./CPU";
+import { renderHighlights } from "../../lib/highlights";
 import { fadeUp } from "../../lib/motion";
 import {
   COPY,
   GITHUB_PROFILE_HREF,
   LINKEDIN_PROFILE_HREF,
-  POSTS,
   PUBLICATION,
 } from "./data";
 
 const VIOLET = "#a78bfa";
+const GREEN = "#10b981";
 
 export default function ImpactMobile() {
   return (
-    <section className="relative w-full overflow-hidden px-6 pt-16 pb-20 sm:px-10 lg:hidden">
+    <section className="relative w-full overflow-hidden px-6 pt-16 pb-16 sm:px-10 lg:hidden">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(circle at 85% 15%, rgba(167,139,250,0.10), transparent 50%), radial-gradient(circle at 12% 85%, rgba(167,139,250,0.06), transparent 55%)",
+            "radial-gradient(circle at 85% 12%, rgba(167,139,250,0.10), transparent 50%), radial-gradient(circle at 12% 90%, rgba(167,139,250,0.06), transparent 55%)",
         }}
       />
 
       <motion.div {...fadeUp()} className="relative">
-        <div className="flex items-center gap-2.5">
-          <span
-            className="font-mono text-[10px] uppercase tracking-[0.3em]"
-            style={{ color: VIOLET }}
-          >
-            {COPY.eyebrow}
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+          <span className="inline-flex items-center gap-2">
+            <span
+              aria-hidden
+              className="h-[6px] w-[6px] rounded-full"
+              style={{
+                backgroundColor: GREEN,
+                boxShadow: `0 0 4px ${GREEN}cc, 0 0 8px ${GREEN}66`,
+              }}
+            />
+            <span className="font-mono text-[9.5px] font-medium uppercase tracking-[0.3em] text-[#cbd5e1]/85">
+              {PUBLICATION.chip}
+            </span>
           </span>
-          <span aria-hidden className="h-px w-8" style={{ backgroundColor: `${VIOLET}55` }} />
-          <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-[#64748b]">
-            {COPY.counter}
-          </span>
-        </div>
-        <h2 className="mt-4 text-[40px] font-bold leading-[1.04] tracking-[-0.02em] text-[var(--color-text)]">
-          {COPY.titleStart}<span style={{ color: VIOLET }}>{COPY.titleAccent}</span>{COPY.titleEnd}
-        </h2>
-        <div
-          aria-hidden
-          className="mt-4 h-[3px] w-[64px] rounded-sm"
-          style={{ backgroundColor: VIOLET }}
-        />
-        <p className="mt-4 text-[14px] leading-[1.6] text-[var(--color-muted)]">
-          {COPY.subtitle}
-        </p>
-      </motion.div>
-
-      <motion.a
-        {...fadeUp(0.05)}
-        href={PUBLICATION.href}
-        target="_blank"
-        rel="noreferrer"
-        className="relative mt-12 block active:opacity-85"
-      >
-        <div className="flex items-baseline gap-3">
-          <span className="font-mono text-[11px] tracking-[0.3em] text-[#64748b]">
-            01
-          </span>
-          <span aria-hidden className="h-px flex-1 bg-[#1e293b]" />
-          <span
-            className="font-mono text-[9px] font-medium uppercase tracking-[0.28em]"
-            style={{ color: VIOLET }}
-          >
-            {PUBLICATION.chip}
+          <span aria-hidden className="h-px w-4 bg-[#1e293b]" />
+          <span className="font-mono text-[9.5px] uppercase tracking-[0.28em] text-[#64748b]">
+            {PUBLICATION.venue}
           </span>
         </div>
 
-        <p className="mt-5 font-mono text-[10px] uppercase tracking-[0.3em] text-[#64748b]">
-          {PUBLICATION.venue}
-        </p>
-        <h3 className="mt-2.5 text-[26px] font-bold leading-[1.1] tracking-[-0.015em] text-[var(--color-text)]">
+        <h2 className="mt-5 text-[36px] font-bold leading-[1.05] tracking-[-0.02em] text-[var(--color-text)] sm:text-[44px]">
           {PUBLICATION.title}
-        </h3>
-        <p className="mt-2 text-[12px] tracking-[0.02em] text-[#cbd5e1]/75">
+        </h2>
+
+        <p className="mt-5 text-[12.5px] tracking-[0.02em] text-[#cbd5e1]/75">
           {PUBLICATION.authors}
         </p>
 
-        <p className="mt-4 text-[13.5px] leading-[1.65] text-[#cbd5e1]/80">
-          {PUBLICATION.abstractShort}
+        <p className="mt-5 text-[15px] leading-[1.55] text-[var(--color-muted)]">
+          {renderHighlights(PUBLICATION.abstract)}
         </p>
+      </motion.div>
 
-        <div className="mt-5">
+      <motion.div {...fadeUp(0.1)} className="relative mt-8">
+        <div className="flex items-center gap-2.5">
+          <span aria-hidden className="h-px w-5" style={{ backgroundColor: `${VIOLET}55` }} />
           <span
-            className="font-mono text-[10px] uppercase tracking-[0.3em]"
+            className="font-mono text-[10px] uppercase tracking-[0.32em]"
             style={{ color: VIOLET }}
           >
-            — Finding
-          </span>
-          <p className="mt-2 text-[15px] italic leading-[1.5] text-[var(--color-text)]/95">
-            {PUBLICATION.keyFinding}
-          </p>
-        </div>
-
-        <div className="mt-5 flex items-baseline justify-between gap-3">
-          <span className="font-mono text-[10.5px] tracking-[0.08em] text-[#64748b]">
-            {PUBLICATION.hint}
-          </span>
-          <span
-            className="text-[13px] tracking-[0.02em]"
-            style={{ color: VIOLET }}
-          >
-            {PUBLICATION.cta} →
+            Finding
           </span>
         </div>
-      </motion.a>
+        <p className="mt-3 text-[16px] italic leading-[1.5] text-[var(--color-text)]/95">
+          {PUBLICATION.keyFinding}
+        </p>
+      </motion.div>
 
-      <div className="relative mt-10 flex flex-col">
-        {POSTS.map((p, i) => (
-          <motion.a
-            key={p.title}
-            {...fadeUp(0.1 + i * 0.06)}
-            href={p.href}
-            target="_blank"
-            rel="noreferrer"
-            className="relative block py-6 active:opacity-85"
-          >
-            {i === 0 && (
-              <span aria-hidden className="absolute inset-x-0 top-0 h-px bg-[#1e293b]" />
-            )}
-            <span aria-hidden className="absolute inset-x-0 bottom-0 h-px bg-[#1e293b]" />
+      <motion.div
+        {...fadeUp(0.15)}
+        className="relative mt-9 flex flex-wrap items-baseline gap-x-4 gap-y-2"
+      >
+        <span className="font-mono text-[10px] tracking-[0.08em] text-[#64748b]">
+          {PUBLICATION.hint}
+        </span>
+        <span aria-hidden className="h-px w-7 bg-[#1e293b]" />
+        <a
+          href={PUBLICATION.href}
+          target="_blank"
+          rel="noreferrer"
+          className="text-[15px] tracking-[0.01em] active:opacity-75"
+          style={{ color: VIOLET }}
+        >
+          {PUBLICATION.cta} →
+        </a>
+      </motion.div>
 
-            <div className="flex items-baseline gap-3">
-              <span className="font-mono text-[11px] tracking-[0.3em] text-[#64748b]">
-                0{i + 2}
-              </span>
-              <p className="font-mono text-[9px] font-medium uppercase tracking-[0.22em] text-[#94a3b8]/85">
-                {p.tag}
-              </p>
-            </div>
+      <motion.div
+        {...fadeUp(0.2)}
+        className="relative mt-12 flex justify-center"
+      >
+        <div
+          className="w-full max-w-[320px]"
+          style={{ transform: "translateX(14px)" }}
+        >
+          <CPU
+            tiltY={16}
+            tiltX={16}
+            ihsInsetTop={34}
+            ihsInsetLeft={26}
+            ihsInsetBottom={26}
+            ihsInsetRight={34}
+          />
+        </div>
+      </motion.div>
 
-            <h4 className="mt-2.5 text-[18px] font-semibold leading-[1.22] tracking-[-0.005em] text-[var(--color-text)]">
-              {p.title}
-            </h4>
-            <p className="mt-2 text-[13px] leading-[1.55] text-[#cbd5e1]/70">
-              {p.snippet}
-            </p>
-
-            <div className="mt-3 flex items-baseline justify-between">
-              <span className="font-mono text-[10.5px] tracking-[0.08em] text-[#94a3b8]/70">
-                {p.metric}
-              </span>
-              <span
-                className="text-[12.5px] tracking-[0.02em]"
-                style={{ color: VIOLET }}
-              >
-                Read →
-              </span>
-            </div>
-          </motion.a>
-        ))}
-      </div>
-
-      <motion.div {...fadeUp(0.25)} className="relative mt-10">
+      <motion.div {...fadeUp(0.28)} className="relative mt-12">
         <div className="flex items-center gap-2.5">
           <span aria-hidden className="h-px w-5 bg-[#1e293b]" />
           <span className="font-mono text-[10px] uppercase tracking-[0.32em] text-[#64748b]">

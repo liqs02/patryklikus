@@ -35,3 +35,10 @@ body {
   background-color: var(--color-accent-dim);
   color: #fff;
 }
+
+mark.highlight {
+  background-color: transparent;
+  color: #d4dce4;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}

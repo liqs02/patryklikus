@@ -10,7 +10,7 @@ import {
   NAME,
   ROLE,
   SKILLS_MOBILE,
-  TAGLINE,
+  TAGLINE_PARTS,
 } from "./data";
 
 const NAME_CONTAINER = {
@@ -159,7 +159,15 @@ export default function HeroMobile() {
         transition={{ duration: 0.5, delay: 0.78 }}
         className="relative mt-3 max-w-[28rem] text-[15px] leading-[1.55] text-[var(--color-muted)]"
       >
-        {TAGLINE}
+        {TAGLINE_PARTS.map((part, i) =>
+          part.emphasis ? (
+            <span key={i} className="font-semibold text-[var(--color-ink)]">
+              {part.text}
+            </span>
+          ) : (
+            part.text
+          ),
+        )}
       </motion.p>
 
       <motion.div

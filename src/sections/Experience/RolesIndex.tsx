@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { EASE } from "../../lib/motion";
+import { renderHighlights } from "../../lib/highlights";
 import {
   EDUCATION,
   MOTOROLA,
@@ -105,7 +106,7 @@ function RoleButton({
       </p>
       {job.description && (
         <p className="mt-3 max-w-[460px] text-[14px] leading-[1.65] text-[#cbd5e1]/80">
-          {job.description}
+          {renderHighlights(job.description)}
         </p>
       )}
     </motion.button>

@@ -4,10 +4,12 @@ export const TAGLINE_PARTS: ReadonlyArray<{
   text: string;
   emphasis?: boolean;
 }> = [
-  { text: "Building planet-scale systems used at " },
+  { text: "Building planet-scale systems used by " },
   { text: "Microsoft, Meta, Amazon,", emphasis: true },
+  { text: " " },
+  { text: "Uber,", emphasis: true },
   { text: " and " },
-  { text: "Uber", emphasis: true },
+  { text: "US Federal", emphasis: true },
   { text: "." },
 ];
 

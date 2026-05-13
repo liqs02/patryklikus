@@ -117,14 +117,16 @@ export default function LeftPanel() {
               key={`${job.title}-${job.year}`}
               className="flex items-center gap-3 text-[14px]"
             >
-              {job.active ? (
-                <span className="relative flex h-2 w-2 shrink-0">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-accent)] opacity-60" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--color-accent)]" />
-                </span>
-              ) : (
-                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--color-subtle)]/60" />
-              )}
+              <span className="flex h-2 w-2 shrink-0 items-center justify-center">
+                {job.active ? (
+                  <span className="relative flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-accent)] opacity-60" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--color-accent)]" />
+                  </span>
+                ) : (
+                  <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-subtle)]/60" />
+                )}
+              </span>
               <span className="text-[var(--color-text)]">{job.title}</span>
               <span className="font-mono text-[12px] text-[var(--color-subtle)]">
                 {job.year}

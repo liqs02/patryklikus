@@ -52,7 +52,7 @@ export const MOTOROLA: JobCard = {
   period: { startYear: 2023, end: { year: 2025, month: 6 } },
   company: "Motorola Solutions",
   role: "Software Engineer",
-  description: "*99.99%* availability · *sub-150ms* latency SLA · *1,000+* req/s · used by *US Federal*.",
+  description: "*99.999%* availability · *sub-150ms* latency SLA · *1,000+* req/s · used by *US Federal*.",
   tech: ["Java", "Spring Boot", "AWS", "Terraform", "PostgreSQL"],
   chips: [
     { key: "ai-dispatch", label: "AI Dispatch" },
@@ -134,7 +134,7 @@ export const PROJECTS: Record<ProjectKey, ProjectDetail> = {
     caption: "Motorola Solutions · Architecture",
     title: "Geo-redundant Architecture",
     description: [
-      "Multi-region architecture for mission-critical 911 systems delivering *99.99% availability* (only *~52 min downtime/year*), preserving data integrity and *event ordering* under regional failover.",
+      "Multi-region architecture for mission-critical 911 systems delivering *99.999% availability* (only *~5 min downtime/year*), preserving data integrity and *event ordering* under regional failover.",
       "Owned production reliability via 24/7 on-call rotations — rapid alert response and root-cause discipline minimizing downtime.",
     ],
     usedBy: [{ label: "US Public Safety", weight: 600 }],

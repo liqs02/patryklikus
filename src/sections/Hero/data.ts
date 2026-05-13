@@ -46,5 +46,5 @@ export const DASHBOARD = {
   initialRps: 60.4,
   cacheHit: 99.97,
   footerLeft: "── 2.1B tiles served today",
-  footerRight: "uptime 99.99%",
+  footerRight: "uptime 99.999%",
 };

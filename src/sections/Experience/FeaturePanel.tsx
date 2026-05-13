@@ -29,7 +29,7 @@ export default function FeaturePanel({ inView, selected, activeJob, onSelect }: 
     >
       <div className="flex items-baseline gap-3">
         <span aria-hidden className="h-px w-6 bg-[var(--color-accent)]/40" />
-        <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-[var(--color-accent)]">
+        <p className="font-medium text-[10px] uppercase tracking-[0.3em] text-[var(--color-accent)]">
           Projects
         </p>
       </div>
@@ -60,7 +60,7 @@ export default function FeaturePanel({ inView, selected, activeJob, onSelect }: 
               >
                 <span
                   className={
-                    "font-mono text-[9.5px] tracking-[0.28em] transition-colors duration-200 " +
+                    "font-medium text-[9.5px] tracking-[0.28em] transition-colors duration-200 " +
                     (isActive ? "text-[var(--color-accent)]" : "text-[#64748b]")
                   }
                 >
@@ -68,7 +68,7 @@ export default function FeaturePanel({ inView, selected, activeJob, onSelect }: 
                 </span>
                 <span
                   className={
-                    "font-mono text-[10.5px] uppercase tracking-[0.2em] transition-colors duration-200 " +
+                    "font-medium text-[10.5px] uppercase tracking-[0.2em] transition-colors duration-200 " +
                     (isActive
                       ? "text-[var(--color-accent)]"
                       : "text-[#94a3b8] group-hover:text-[#e2e8f0]")
@@ -91,7 +91,7 @@ export default function FeaturePanel({ inView, selected, activeJob, onSelect }: 
           transition={PROJECT_TRANSITION}
           className="relative mt-8"
         >
-          <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-[#64748b]">
+          <p className="font-medium text-[10px] uppercase tracking-[0.32em] text-[#64748b]">
             {project.caption}
           </p>
 
@@ -122,7 +122,7 @@ export default function FeaturePanel({ inView, selected, activeJob, onSelect }: 
             <div className="mt-8 border-t border-[#1e293b] pt-5">
               <div className="flex items-baseline gap-3">
                 <span aria-hidden className="h-px w-6 bg-[var(--color-accent)]/40" />
-                <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-[var(--color-accent)]">
+                <p className="font-medium text-[10px] uppercase tracking-[0.3em] text-[var(--color-accent)]">
                   Used by
                 </p>
               </div>

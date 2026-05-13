@@ -35,12 +35,12 @@ export default function ResearchMobile() {
                 boxShadow: `0 0 4px ${GREEN}cc, 0 0 8px ${GREEN}66`,
               }}
             />
-            <span className="font-mono text-[9.5px] font-medium uppercase tracking-[0.3em] text-[#cbd5e1]/85">
+            <span className="font-medium text-[9.5px] font-medium uppercase tracking-[0.3em] text-[#cbd5e1]/85">
               {PUBLICATION.chip}
             </span>
           </span>
           <span aria-hidden className="h-px w-4 bg-[#1e293b]" />
-          <span className="font-mono text-[9.5px] uppercase tracking-[0.28em] text-[#64748b]">
+          <span className="font-medium text-[9.5px] uppercase tracking-[0.28em] text-[#64748b]">
             {PUBLICATION.venue}
           </span>
         </div>
@@ -62,7 +62,7 @@ export default function ResearchMobile() {
         <div className="flex items-center gap-2.5">
           <span aria-hidden className="h-px w-5" style={{ backgroundColor: `${VIOLET}55` }} />
           <span
-            className="font-mono text-[10px] uppercase tracking-[0.32em]"
+            className="font-medium text-[10px] uppercase tracking-[0.32em]"
             style={{ color: VIOLET }}
           >
             Finding
@@ -97,7 +97,7 @@ export default function ResearchMobile() {
         {...fadeUp(0.2)}
         className="relative mt-14 flex flex-wrap items-baseline gap-x-4 gap-y-2"
       >
-        <span className="font-mono text-[10px] tracking-[0.08em] text-[#64748b]">
+        <span className="font-medium text-[10px] tracking-[0.08em] text-[#64748b]">
           {PUBLICATION.hint}
         </span>
         <span aria-hidden className="h-px w-7 bg-[#1e293b]" />
@@ -115,7 +115,7 @@ export default function ResearchMobile() {
       <motion.div {...fadeUp(0.28)} className="relative mt-16">
         <div className="flex items-center gap-2.5">
           <span aria-hidden className="h-px w-5 bg-[#1e293b]" />
-          <span className="font-mono text-[10px] uppercase tracking-[0.32em] text-[#64748b]">
+          <span className="font-medium text-[10px] uppercase tracking-[0.32em] text-[#64748b]">
             {COPY.moreOn}
           </span>
         </div>

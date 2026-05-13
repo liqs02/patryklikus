@@ -61,7 +61,7 @@ function RoleButton({
       <div className="flex items-baseline gap-4">
         <span
           className={
-            "font-mono text-[11px] tracking-[0.3em] transition-colors duration-300 " +
+            "font-medium text-[11px] tracking-[0.3em] transition-colors duration-300 " +
             (isActive ? "text-[var(--color-accent)]" : "text-[#64748b]")
           }
         >
@@ -69,7 +69,7 @@ function RoleButton({
         </span>
         <span
           className={
-            "font-mono text-[10.5px] uppercase tracking-[0.22em] transition-colors duration-300 " +
+            "font-medium text-[10.5px] uppercase tracking-[0.22em] transition-colors duration-300 " +
             (isActive ? "text-[var(--color-accent)]" : "text-[#94a3b8]/85")
           }
         >
@@ -123,7 +123,7 @@ export default function RolesIndex({ inView, activeJobId, onSelectJob }: Props) 
         className="flex items-baseline gap-3"
       >
         <span aria-hidden className="h-px w-6 bg-[#94a3b8]/30" />
-        <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-[#64748b]">
+        <p className="font-medium text-[10px] uppercase tracking-[0.3em] text-[#64748b]">
           Roles
         </p>
       </motion.div>
@@ -148,7 +148,7 @@ export default function RolesIndex({ inView, activeJobId, onSelectJob }: Props) 
             aria-hidden
             className="h-2 w-2 rotate-45 border border-[var(--color-accent)]/60"
           />
-          <span className="font-mono text-[10px] uppercase tracking-[0.22em] leading-[1.7] text-[#94a3b8]/80">
+          <span className="font-medium text-[10px] uppercase tracking-[0.22em] leading-[1.7] text-[#94a3b8]/80">
             {EDUCATION.line1}
             <br />
             {EDUCATION.line2}

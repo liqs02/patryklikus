@@ -48,7 +48,7 @@ export default function BeyondMobile() {
                   style={{ backgroundColor: t.accent }}
                 />
                 <p
-                  className="font-mono text-[10px] font-semibold tracking-[0.22em]"
+                  className="font-medium text-[10px] font-semibold tracking-[0.22em]"
                   style={{ color: t.accent }}
                 >
                   {t.theme}

@@ -117,16 +117,18 @@ export default function LeftPanel() {
               key={`${job.title}-${job.year}`}
               className="flex items-center gap-3 text-[14px]"
             >
-              {job.active ? (
-                <span className="relative flex h-2 w-2 shrink-0">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-accent)] opacity-60" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--color-accent)]" />
-                </span>
-              ) : (
-                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--color-subtle)]/60" />
-              )}
+              <span className="flex h-2 w-2 shrink-0 items-center justify-center">
+                {job.active ? (
+                  <span className="relative flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-accent)] opacity-60" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--color-accent)]" />
+                  </span>
+                ) : (
+                  <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-subtle)]/60" />
+                )}
+              </span>
               <span className="text-[var(--color-text)]">{job.title}</span>
-              <span className="font-mono text-[12px] text-[var(--color-subtle)]">
+              <span className="font-medium text-[12px] text-[var(--color-subtle)]">
                 {job.year}
               </span>
             </li>
@@ -135,7 +137,7 @@ export default function LeftPanel() {
 
         <motion.p
           {...slideIn(0.96)}
-          className="mt-8 font-mono text-[13px] leading-relaxed tracking-wide text-[#cbd5e1]/85"
+          className="mt-8 font-medium text-[13px] leading-relaxed tracking-wide text-[#cbd5e1]/85"
         >
           {SKILLS_DESKTOP.map((s, i) => (
             <span key={s}>
@@ -219,7 +221,7 @@ function EdgeMarkers() {
       >
         <span className="h-12 w-px bg-gradient-to-b from-transparent to-[#94a3b8]/30" />
         <span
-          className="font-mono text-[10px] uppercase tracking-[0.32em] text-[#64748b]"
+          className="font-medium text-[10px] uppercase tracking-[0.32em] text-[#64748b]"
           style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
         >
           Index · 00 / 03

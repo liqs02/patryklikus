@@ -133,11 +133,11 @@ export default function RightPanel() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-accent)] opacity-60" />
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[var(--color-accent)]" />
               </span>
-              <span className="font-mono text-[10px] uppercase tracking-wider text-[var(--color-muted)]">
+              <span className="font-medium text-[10px] uppercase tracking-wider text-[var(--color-muted)]">
                 deploy
               </span>
             </div>
-            <div className="mt-1 font-mono text-[12px] text-[var(--color-text)]">
+            <div className="mt-1 font-medium text-[12px] text-[var(--color-text)]">
               v2.34.1 <span className="text-[var(--color-subtle)]">·</span> 4h
               ago
             </div>
@@ -151,10 +151,10 @@ export default function RightPanel() {
             style={{ transform: "translateZ(60px)" }}
           >
             <div className="flex items-center gap-3">
-              <span className="font-mono text-[10px] uppercase tracking-wider text-[var(--color-muted)]">
+              <span className="font-medium text-[10px] uppercase tracking-wider text-[var(--color-muted)]">
                 regions
               </span>
-              <span className="font-mono text-[12px] text-[var(--color-text)]">
+              <span className="font-medium text-[12px] text-[var(--color-text)]">
                 3 active
               </span>
             </div>
@@ -190,14 +190,14 @@ function DashboardCard({
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-accent)] opacity-60" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--color-accent)]" />
           </span>
-          <span className="font-mono text-[12.5px] text-[var(--color-text)]">
+          <span className="font-medium text-[12.5px] text-[var(--color-text)]">
             {DASHBOARD.service}
           </span>
-          <span className="rounded border border-[var(--color-accent)]/30 px-1.5 py-px font-mono text-[10px] uppercase tracking-wider text-[var(--color-accent)]">
+          <span className="rounded border border-[var(--color-accent)]/30 px-1.5 py-px font-medium text-[10px] uppercase tracking-wider text-[var(--color-accent)]">
             {DASHBOARD.env}
           </span>
         </div>
-        <span className="font-mono text-[10px] uppercase tracking-wider text-[var(--color-subtle)]">
+        <span className="font-medium text-[10px] uppercase tracking-wider text-[var(--color-subtle)]">
           {DASHBOARD.status}
         </span>
       </header>
@@ -233,10 +233,10 @@ function DashboardCard({
         className="border-t border-[var(--color-border)] px-5 py-4"
       >
         <div className="flex items-baseline justify-between">
-          <span className="font-mono text-[10px] uppercase tracking-wider text-[var(--color-subtle)]">
+          <span className="font-medium text-[10px] uppercase tracking-wider text-[var(--color-subtle)]">
             p99 · last 60s
           </span>
-          <span className="font-mono text-[10px] text-[var(--color-subtle)]">
+          <span className="font-medium text-[10px] text-[var(--color-subtle)]">
             ms
           </span>
         </div>
@@ -282,10 +282,10 @@ function DashboardCard({
         transition={{ duration: 0.5, delay: 0.85 }}
         className="flex items-center justify-between border-t border-[var(--color-border)] px-5 py-2.5"
       >
-        <span className="font-mono text-[10px] text-[var(--color-subtle)]">
+        <span className="font-medium text-[10px] text-[var(--color-subtle)]">
           {DASHBOARD.footerLeft}
         </span>
-        <span className="font-mono text-[10px] text-[var(--color-subtle)]">
+        <span className="font-medium text-[10px] text-[var(--color-subtle)]">
           {DASHBOARD.footerRight}
         </span>
       </motion.footer>
@@ -314,7 +314,7 @@ function Metric({
       className="px-5 py-4"
     >
       <div
-        className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-wider"
+        className="flex items-center gap-1.5 font-medium text-[10px] uppercase tracking-wider"
         style={{ color: accent }}
       >
         <span
@@ -324,10 +324,10 @@ function Metric({
         {label}
       </div>
       <div className="mt-2 flex items-baseline gap-1">
-        <span className="font-mono text-[26px] font-semibold tabular-nums text-[var(--color-text)]">
+        <span className="font-medium text-[26px] font-semibold tabular-nums text-[var(--color-text)]">
           {value}
         </span>
-        <span className="font-mono text-[11px] text-[var(--color-muted)]">
+        <span className="font-medium text-[11px] text-[var(--color-muted)]">
           {unit}
         </span>
       </div>

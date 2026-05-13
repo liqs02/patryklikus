@@ -7,14 +7,11 @@ const IHS_INSET_TOP = 36;
 const IHS_INSET_LEFT = 36;
 const IHS_INSET_BOTTOM = 24;
 const IHS_INSET_RIGHT = 24;
-const IHS_W = PCB_W - IHS_INSET_LEFT - IHS_INSET_RIGHT;
-const IHS_H = PCB_W - IHS_INSET_TOP - IHS_INSET_BOTTOM;
 const IHS_D = 12;
 
 const VIOLET = "#a78bfa";
 const VIOLET_BRIGHT = "#c4b5fd";
 const ACCENT_GREEN = "#10b981";
-const ACCENT_AMBER = "#f59e0b";
 
 const PCB_TOP_BG =
   "linear-gradient(135deg, #15101f 0%, #0a0712 55%, #120e1c 100%)";
@@ -35,6 +32,7 @@ type CPUProps = {
   ihsInsetLeft?: number;
   ihsInsetBottom?: number;
   ihsInsetRight?: number;
+  animateEntry?: boolean;
 };
 
 export default function CPU({
@@ -44,8 +42,10 @@ export default function CPU({
   ihsInsetLeft = IHS_INSET_LEFT,
   ihsInsetBottom = IHS_INSET_BOTTOM,
   ihsInsetRight = IHS_INSET_RIGHT,
+  animateEntry = true,
 }: CPUProps = {}) {
   const reduced = useReducedMotion();
+  const skipEntry = !animateEntry || !!reduced;
   const ihsW = PCB_W - ihsInsetLeft - ihsInsetRight;
   const ihsH = PCB_W - ihsInsetTop - ihsInsetBottom;
   const lightFromRight = tiltY > 0;
@@ -57,10 +57,10 @@ export default function CPU({
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-15% 0px" }}
-      transition={{ duration: 0.9, ease: EASE, delay: 0.2 }}
+      initial={skipEntry ? { opacity: 1, x: 0 } : { opacity: 0, x: 36 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: false, margin: "-15% 0px" }}
+      transition={{ duration: skipEntry ? 0 : 0.85, ease: EASE }}
       className="relative flex aspect-square items-center justify-center self-start"
       style={{ perspective: 1700 }}
     >

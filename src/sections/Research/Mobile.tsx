@@ -12,7 +12,7 @@ import {
 const VIOLET = "#a78bfa";
 const GREEN = "#10b981";
 
-export default function ImpactMobile() {
+export default function ResearchMobile() {
   return (
     <section className="relative w-full overflow-hidden px-6 pt-24 pb-24 sm:px-10 lg:hidden">
       <div
@@ -88,6 +88,7 @@ export default function ImpactMobile() {
             ihsInsetLeft={26}
             ihsInsetBottom={26}
             ihsInsetRight={34}
+            animateEntry={false}
           />
         </div>
       </motion.div>

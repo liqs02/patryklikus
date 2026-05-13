@@ -3,8 +3,8 @@ import Experience from "./sections/Experience";
 import ExperienceMobile from "./sections/Experience/Mobile";
 import Beyond from "./sections/Beyond";
 import BeyondMobile from "./sections/Beyond/Mobile";
-import Impact from "./sections/Impact";
-import ImpactMobile from "./sections/Impact/Mobile";
+import Research from "./sections/Research";
+import ResearchMobile from "./sections/Research/Mobile";
 import SectionDots from "./components/SectionDots";
 
 export default function App() {
@@ -21,9 +21,9 @@ export default function App() {
           <Beyond />
           <BeyondMobile />
         </div>
-        <div id="impact">
-          <Impact />
-          <ImpactMobile />
+        <div id="research">
+          <Research />
+          <ResearchMobile />
         </div>
       </main>
     </>

@@ -43,6 +43,39 @@ export default function Beyond() {
         </div>
 
         <div className="mt-12 flex flex-1 flex-col justify-center">
+          <div className="mx-auto mb-6 w-full max-w-[1200px]">
+            <motion.div
+              {...a(0.18)}
+              className="h-px"
+              style={{
+                background:
+                  "linear-gradient(to right, transparent, rgba(148,163,184,0.22) 8%, rgba(148,163,184,0.22) 92%, transparent)",
+              }}
+            />
+            <div className="grid grid-cols-3 gap-6">
+              {THEMES.map((t, i) => (
+                <motion.div
+                  key={`rail-${t.id}`}
+                  {...a(0.22 + i * 0.06)}
+                  className="flex flex-col items-center"
+                >
+                  <span
+                    className="-mt-[5px] h-[10px] w-[10px] rounded-full"
+                    style={{
+                      backgroundColor: t.accent,
+                      boxShadow: `0 0 4px ${t.accent}, 0 0 12px ${t.accent}aa, 0 0 24px ${t.accent}55`,
+                    }}
+                  />
+                  <span
+                    className="mt-2 h-10 w-px"
+                    style={{
+                      background: `linear-gradient(to bottom, ${t.accent}88, transparent)`,
+                    }}
+                  />
+                </motion.div>
+              ))}
+            </div>
+          </div>
           <div className="mx-auto w-full max-w-[1200px]">
             <div className="grid grid-cols-3 gap-6">
               {THEMES.map((t, i) => (

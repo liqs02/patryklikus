@@ -11,7 +11,7 @@ import {
 
 const VIOLET = "#a78bfa";
 
-export default function Impact() {
+export default function Research() {
   const { sectionRef, inView } = useSectionInView();
   const a = (delay: number) => fadeIn(inView, delay);
 
@@ -117,9 +117,9 @@ export default function Impact() {
             </motion.div>
           </div>
 
-            <motion.div {...a(0.5)} className="col-span-4">
+            <div className="col-span-4">
               <CPU />
-            </motion.div>
+            </div>
           </div>
         </div>
 

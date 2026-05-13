@@ -16,7 +16,7 @@ export const LINKEDIN_PROFILE_HREF = "https://linkedin.com/in/patryklikus";
 export const GITHUB_PROFILE_HREF = "https://github.com/liqs02";
 
 export const COPY = {
-  eyebrow: "Impact",
+  eyebrow: "Research",
   counter: "03 / 03",
   titleStart: "Sharing what ",
   titleAccent: "I learn",

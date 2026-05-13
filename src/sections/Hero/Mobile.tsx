@@ -81,7 +81,7 @@ export default function HeroMobile() {
   const sparkPath = buildSparkPath(spark);
 
   return (
-    <div className="relative flex min-h-screen w-full flex-col overflow-hidden px-6 pt-14 pb-12 sm:px-10 lg:hidden">
+    <div className="relative flex min-h-screen w-full flex-col overflow-hidden px-6 pt-20 pb-16 sm:px-10 lg:hidden">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
@@ -93,28 +93,12 @@ export default function HeroMobile() {
 
       <CornerTicks />
 
-      <motion.div
-        initial={{ opacity: 0, y: -6 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.1 }}
-        className="relative flex items-center gap-3"
-      >
-        <span aria-hidden className="h-px w-6 bg-[var(--color-accent)]/45" />
-        <span className="font-mono text-[10px] uppercase tracking-[0.32em] text-[var(--color-accent)]">
-          Index
-        </span>
-        <span aria-hidden className="h-px w-3 bg-[#94a3b8]/30" />
-        <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-[#64748b]">
-          00 / 03
-        </span>
-      </motion.div>
-
       <motion.h1
         variants={NAME_CONTAINER}
         initial="hidden"
         animate="show"
         aria-label={NAME}
-        className="relative mt-6 text-[44px] font-bold leading-[1.05] tracking-tight text-[var(--color-text)] sm:text-[56px]"
+        className="relative text-[44px] font-bold leading-[1.05] tracking-tight text-[var(--color-text)] sm:text-[56px]"
       >
         {NAME.split(" ").map((word, wi, words) => (
           <span
@@ -136,18 +120,10 @@ export default function HeroMobile() {
         ))}
       </motion.h1>
 
-      <motion.div
-        initial={{ scaleX: 0 }}
-        animate={{ scaleX: 1 }}
-        transition={{ duration: 0.6, delay: 0.55, ease: EASE }}
-        style={{ transformOrigin: "left" }}
-        className="relative mt-5 h-[3px] w-[64px] rounded-sm bg-[var(--color-accent)]"
-      />
-
       <motion.p
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.7 }}
+        transition={{ duration: 0.5, delay: 0.6 }}
         className="relative mt-5 text-[22px] font-medium text-[var(--color-accent)]"
       >
         {ROLE}
@@ -157,7 +133,7 @@ export default function HeroMobile() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.78 }}
-        className="relative mt-3 max-w-[28rem] text-[15px] leading-[1.55] text-[var(--color-muted)]"
+        className="relative mt-4 max-w-[28rem] text-[15px] leading-[1.6] text-[var(--color-muted)]"
       >
         {TAGLINE_PARTS.map((part, i) =>
           part.emphasis ? (
@@ -174,7 +150,7 @@ export default function HeroMobile() {
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.92 }}
-        className="relative mt-9"
+        className="relative mt-12"
       >
         <div className="flex items-center gap-2.5">
           <span aria-hidden className="h-px w-5 bg-[var(--color-accent)]/40" />
@@ -197,7 +173,7 @@ export default function HeroMobile() {
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 1.15 }}
-        className="relative mt-7"
+        className="relative mt-10"
       >
         <div className="flex items-center gap-2.5">
           <span aria-hidden className="h-px w-5 bg-[#94a3b8]/30" />
@@ -219,7 +195,7 @@ export default function HeroMobile() {
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 1.25, ease: EASE }}
-        className="relative mt-9 overflow-hidden rounded-xl border border-[var(--color-border)] bg-[#0d1117]/95 backdrop-blur shadow-[0_20px_50px_-25px_rgba(0,0,0,0.7)] sm:max-w-md"
+        className="relative mt-12 overflow-hidden rounded-xl border border-[var(--color-border)] bg-[#0d1117]/95 backdrop-blur shadow-[0_20px_50px_-25px_rgba(0,0,0,0.7)] sm:max-w-md"
       >
         <header className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-2.5">
           <div className="flex items-center gap-2">

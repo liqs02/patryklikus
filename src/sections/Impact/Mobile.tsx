@@ -14,7 +14,7 @@ const GREEN = "#10b981";
 
 export default function ImpactMobile() {
   return (
-    <section className="relative w-full overflow-hidden px-6 pt-16 pb-16 sm:px-10 lg:hidden">
+    <section className="relative w-full overflow-hidden px-6 pt-24 pb-24 sm:px-10 lg:hidden">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
@@ -45,20 +45,20 @@ export default function ImpactMobile() {
           </span>
         </div>
 
-        <h2 className="mt-5 text-[36px] font-bold leading-[1.05] tracking-[-0.02em] text-[var(--color-text)] sm:text-[44px]">
+        <h2 className="mt-7 text-[36px] font-bold leading-[1.05] tracking-[-0.02em] text-[var(--color-text)] sm:text-[44px]">
           {PUBLICATION.title}
         </h2>
 
-        <p className="mt-5 text-[12.5px] tracking-[0.02em] text-[#cbd5e1]/75">
+        <p className="mt-6 text-[12.5px] tracking-[0.02em] text-[#cbd5e1]/75">
           {PUBLICATION.authors}
         </p>
 
-        <p className="mt-5 text-[15px] leading-[1.55] text-[var(--color-muted)]">
+        <p className="mt-7 text-[15px] leading-[1.6] text-[var(--color-muted)]">
           {renderHighlights(PUBLICATION.abstract)}
         </p>
       </motion.div>
 
-      <motion.div {...fadeUp(0.1)} className="relative mt-8">
+      <motion.div {...fadeUp(0.1)} className="relative mt-12">
         <div className="flex items-center gap-2.5">
           <span aria-hidden className="h-px w-5" style={{ backgroundColor: `${VIOLET}55` }} />
           <span
@@ -68,33 +68,14 @@ export default function ImpactMobile() {
             Finding
           </span>
         </div>
-        <p className="mt-3 text-[16px] italic leading-[1.5] text-[var(--color-text)]/95">
+        <p className="mt-4 text-[16px] italic leading-[1.55] text-[var(--color-text)]/95">
           {PUBLICATION.keyFinding}
         </p>
       </motion.div>
 
       <motion.div
         {...fadeUp(0.15)}
-        className="relative mt-9 flex flex-wrap items-baseline gap-x-4 gap-y-2"
-      >
-        <span className="font-mono text-[10px] tracking-[0.08em] text-[#64748b]">
-          {PUBLICATION.hint}
-        </span>
-        <span aria-hidden className="h-px w-7 bg-[#1e293b]" />
-        <a
-          href={PUBLICATION.href}
-          target="_blank"
-          rel="noreferrer"
-          className="text-[15px] tracking-[0.01em] active:opacity-75"
-          style={{ color: VIOLET }}
-        >
-          {PUBLICATION.cta} →
-        </a>
-      </motion.div>
-
-      <motion.div
-        {...fadeUp(0.2)}
-        className="relative mt-12 flex justify-center"
+        className="relative mt-14 flex justify-center"
       >
         <div
           className="w-full max-w-[320px]"
@@ -111,7 +92,26 @@ export default function ImpactMobile() {
         </div>
       </motion.div>
 
-      <motion.div {...fadeUp(0.28)} className="relative mt-12">
+      <motion.div
+        {...fadeUp(0.2)}
+        className="relative mt-14 flex flex-wrap items-baseline gap-x-4 gap-y-2"
+      >
+        <span className="font-mono text-[10px] tracking-[0.08em] text-[#64748b]">
+          {PUBLICATION.hint}
+        </span>
+        <span aria-hidden className="h-px w-7 bg-[#1e293b]" />
+        <a
+          href={PUBLICATION.href}
+          target="_blank"
+          rel="noreferrer"
+          className="text-[15px] tracking-[0.01em] active:opacity-75"
+          style={{ color: VIOLET }}
+        >
+          {PUBLICATION.cta} →
+        </a>
+      </motion.div>
+
+      <motion.div {...fadeUp(0.28)} className="relative mt-16">
         <div className="flex items-center gap-2.5">
           <span aria-hidden className="h-px w-5 bg-[#1e293b]" />
           <span className="font-mono text-[10px] uppercase tracking-[0.32em] text-[#64748b]">

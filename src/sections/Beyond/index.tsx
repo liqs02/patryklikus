@@ -34,30 +34,12 @@ export default function Beyond() {
       />
       <div className="relative mx-auto flex min-h-screen max-w-[1500px] flex-col px-12 pt-[10vh] pb-14 xl:px-20">
         <div className="max-w-[700px]">
-          <motion.div
-            {...a(0.1)}
-            className="flex items-center gap-3 text-[11px] tracking-[0.3em] uppercase"
-          >
-            <span className="text-[var(--color-amber)]">{COPY.eyebrow}</span>
-            <span aria-hidden className="h-px w-10 bg-[var(--color-amber)]/40" />
-            <span className="text-[#64748b]">{COPY.counter}</span>
-          </motion.div>
           <motion.h2
             {...a(0.15)}
-            className="mt-5 text-[64px] font-bold leading-[1.02] tracking-[-0.02em] text-[var(--color-text)]"
+            className="text-[64px] font-bold leading-[1.02] tracking-[-0.02em] text-[var(--color-text)]"
           >
             {COPY.titleStart}<span className="text-[var(--color-amber)]">{COPY.titleAccent}</span>{COPY.titleEnd}
           </motion.h2>
-          <AccentUnderline
-            inView={inView}
-            className="mt-4 h-[3px] w-[88px] rounded-sm bg-[var(--color-amber)]"
-          />
-          <motion.p
-            {...a(0.35)}
-            className="mt-4 text-[15px] text-[var(--color-muted)]"
-          >
-            {COPY.subtitle}
-          </motion.p>
         </div>
 
         <div className="mt-12 flex flex-1 flex-col justify-center">

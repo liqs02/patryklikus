@@ -5,7 +5,7 @@ import { COPY, RECOMMENDATIONS_HREF, THEMES } from "./data";
 
 export default function BeyondMobile() {
   return (
-    <section className="relative w-full overflow-hidden px-6 pt-16 pb-20 sm:px-10 lg:hidden">
+    <section className="relative w-full overflow-hidden px-6 pt-24 pb-24 sm:px-10 lg:hidden">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
@@ -16,28 +16,12 @@ export default function BeyondMobile() {
       />
 
       <motion.div {...fadeUp()} className="relative">
-        <div className="flex items-center gap-2.5">
-          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-[var(--color-amber)]">
-            {COPY.eyebrow}
-          </span>
-          <span aria-hidden className="h-px w-8 bg-[var(--color-amber)]/40" />
-          <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-[#64748b]">
-            {COPY.counter}
-          </span>
-        </div>
-        <h2 className="mt-4 text-[40px] font-bold leading-[1.04] tracking-[-0.02em] text-[var(--color-text)]">
+        <h2 className="text-[40px] font-bold leading-[1.04] tracking-[-0.02em] text-[var(--color-text)]">
           {COPY.titleStart}<span className="text-[var(--color-amber)]">{COPY.titleAccent}</span>{COPY.titleEnd}
         </h2>
-        <div
-          aria-hidden
-          className="mt-4 h-[3px] w-[64px] rounded-sm bg-[var(--color-amber)]"
-        />
-        <p className="mt-4 text-[14px] leading-[1.6] text-[var(--color-muted)]">
-          {COPY.subtitle}
-        </p>
       </motion.div>
 
-      <div className="relative mt-10 flex flex-col gap-5">
+      <div className="relative mt-14 flex flex-col gap-6">
         {THEMES.map((t, i) => (
           <motion.article
             key={t.id}
@@ -108,7 +92,7 @@ export default function BeyondMobile() {
         ))}
       </div>
 
-      <motion.div {...fadeUp(0.3)} className="relative mt-8 text-center">
+      <motion.div {...fadeUp(0.3)} className="relative mt-12 text-center">
         <a
           href={RECOMMENDATIONS_HREF}
           target="_blank"

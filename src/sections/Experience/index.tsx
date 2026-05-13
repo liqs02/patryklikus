@@ -40,39 +40,14 @@ export default function Experience() {
       <div className="relative mx-auto flex min-h-screen max-w-[1500px] flex-col px-12 pt-[10vh] pb-14 xl:px-20">
         <div className="flex items-end justify-between">
           <div className="max-w-[760px]">
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-              transition={{ duration: 0.5, delay: inView ? 0.1 : 0 }}
-              className="flex items-center gap-3 text-[11px] tracking-[0.3em] uppercase"
-            >
-              <span className="text-[var(--color-accent)]">{COPY.eyebrow}</span>
-              <span aria-hidden className="h-px w-10 bg-[var(--color-accent)]/40" />
-              <span className="text-[#64748b]">{COPY.counter}</span>
-            </motion.div>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.6, delay: inView ? 0.15 : 0 }}
-              className="mt-5 text-[64px] font-bold leading-[1.02] tracking-[-0.02em] text-[var(--color-text)]"
+              className="text-[64px] font-bold leading-[1.02] tracking-[-0.02em] text-[var(--color-text)]"
             >
               {COPY.titleStart}<span className="text-[var(--color-accent)]">{COPY.titleAccent}</span>{COPY.titleEnd}
             </motion.h2>
-            <motion.div
-              initial={{ scaleX: 0 }}
-              animate={inView ? { scaleX: 1 } : { scaleX: 0 }}
-              transition={{ duration: 0.5, delay: inView ? 0.3 : 0 }}
-              style={{ transformOrigin: "left" }}
-              className="mt-4 h-[3px] w-[88px] rounded-sm bg-[var(--color-accent)]"
-            />
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={inView ? { opacity: 1 } : { opacity: 0 }}
-              transition={{ duration: 0.5, delay: inView ? 0.4 : 0 }}
-              className="mt-5 max-w-[540px] text-[15px] leading-relaxed text-[var(--color-muted)]"
-            >
-              {COPY.subtitle}
-            </motion.p>
           </div>
         </div>
 

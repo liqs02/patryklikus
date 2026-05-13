@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import overtureLogo from "../../assets/overture-logo.svg";
 import { EASE, fadeUp } from "../../lib/motion";
+import { renderHighlights } from "../../lib/highlights";
 import {
   COPY,
   EDUCATION,
@@ -77,7 +78,7 @@ function ProjectBlock({ projectKey }: { projectKey: ProjectKey }) {
               <div className={(p.logo && LOGOS[p.logo] ? "mt-3 " : "") + "space-y-2.5"}>
                 {p.description.map((par, i) => (
                   <p key={i} className="text-[13.5px] leading-[1.65] text-[#cbd5e1]/85">
-                    {par}
+                    {renderHighlights(par)}
                   </p>
                 ))}
               </div>
@@ -127,7 +128,7 @@ function ProjectBlock({ projectKey }: { projectKey: ProjectKey }) {
 
 function JobBlock({ job, active }: { job: JobCard; active?: boolean }) {
   return (
-    <motion.div {...fadeUp()} className="relative pt-6">
+    <motion.div {...fadeUp()} className="relative pt-8">
       <div className="flex items-center gap-2.5">
         <span
           className={
@@ -144,19 +145,19 @@ function JobBlock({ job, active }: { job: JobCard; active?: boolean }) {
           </span>
         )}
       </div>
-      <h3 className="mt-2 text-[34px] font-bold leading-[1.04] tracking-[-0.022em] text-[var(--color-text)]">
+      <h3 className="mt-3 text-[34px] font-bold leading-[1.04] tracking-[-0.022em] text-[var(--color-text)]">
         {job.company}
       </h3>
-      <p className="mt-1.5 text-[13.5px] text-[var(--color-muted)]">
+      <p className="mt-2 text-[13.5px] text-[var(--color-muted)]">
         {job.role}
       </p>
       {job.description && (
-        <p className="mt-3 text-[13.5px] leading-[1.6] text-[#cbd5e1]/80">
-          {job.description}
+        <p className="mt-4 text-[13.5px] leading-[1.65] text-[#cbd5e1]/80">
+          {renderHighlights(job.description)}
         </p>
       )}
 
-      <div className="mt-5">
+      <div className="mt-9">
         <div className="mb-3 flex items-center gap-2.5">
           <span aria-hidden className="h-px w-4 bg-[var(--color-accent)]/40" />
           <p className="font-mono text-[9.5px] uppercase tracking-[0.3em] text-[var(--color-accent)]">
@@ -175,7 +176,7 @@ export default function ExperienceMobile() {
   return (
     <section
       id="experience-mobile"
-      className="relative w-full overflow-hidden px-6 pt-16 pb-20 sm:px-10 lg:hidden"
+      className="relative w-full overflow-hidden px-6 pt-24 pb-24 sm:px-10 lg:hidden"
     >
       <div
         aria-hidden
@@ -187,39 +188,19 @@ export default function ExperienceMobile() {
       />
 
       <motion.div {...fadeUp()} className="relative">
-        <div className="flex items-center gap-2.5">
-          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-[var(--color-accent)]">
-            {COPY.eyebrow}
-          </span>
-          <span aria-hidden className="h-px w-8 bg-[var(--color-accent)]/40" />
-          <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-[#64748b]">
-            {COPY.counter}
-          </span>
-        </div>
-        <h2 className="mt-4 text-[40px] font-bold leading-[1.04] tracking-[-0.02em] text-[var(--color-text)]">
+        <h2 className="text-[40px] font-bold leading-[1.04] tracking-[-0.02em] text-[var(--color-text)]">
           {COPY.titleStart}<span className="text-[var(--color-accent)]">{COPY.titleAccent}</span>{COPY.titleEnd}
         </h2>
-        <div
-          aria-hidden
-          className="mt-4 h-[3px] w-[64px] rounded-sm bg-[var(--color-accent)]"
-        />
-        <p className="mt-4 text-[14px] leading-[1.6] text-[var(--color-muted)]">
-          {COPY.subtitle}
-        </p>
       </motion.div>
 
-      <div className="relative mt-12">
+      <div className="relative mt-6">
         <JobBlock job={TOMTOM} active />
 
         <motion.div
           {...fadeUp()}
-          className="relative mt-10 flex items-center gap-3 border-y border-[#1e293b] py-6"
+          className="relative mt-14 border-y border-[#1e293b] py-7"
           aria-label="Education milestone"
         >
-          <span
-            aria-hidden
-            className="h-2 w-2 rotate-45 border border-[var(--color-accent)]/60"
-          />
           <span className="font-mono text-[10px] uppercase tracking-[0.22em] leading-[1.7] text-[#94a3b8]/85">
             {EDUCATION.line1}
             <br />
@@ -227,7 +208,7 @@ export default function ExperienceMobile() {
           </span>
         </motion.div>
 
-        <div className="mt-4">
+        <div className="mt-6">
           <JobBlock job={MOTOROLA} />
         </div>
       </div>

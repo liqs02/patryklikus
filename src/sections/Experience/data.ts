@@ -38,7 +38,7 @@ export const TOMTOM: JobCard = {
   period: { startYear: 2025, end: "present" },
   company: "TomTom",
   role: "Software Engineer II",
-  description: "Backend for the world's mapping data.",
+  description: "*Tens of billions* of road segments and nodes · used by *Microsoft*, *Meta*, *Amazon*, *Uber*.",
   tech: ["Java", "Spring Boot", "Kubernetes", "PostgreSQL", "Kafka"],
   chips: [
     { key: "overture", label: "Overture Maps" },
@@ -52,7 +52,7 @@ export const MOTOROLA: JobCard = {
   period: { startYear: 2023, end: { year: 2025, month: 6 } },
   company: "Motorola Solutions",
   role: "Software Engineer",
-  description: "Backend for U.S. security forces — mission-critical, FedRAMP-compliant systems.",
+  description: "*99.99%* availability · *sub-150ms* latency SLA · *1,000+* req/s · used by *US Federal*.",
   tech: ["Java", "Spring Boot", "AWS", "Terraform", "PostgreSQL"],
   chips: [
     { key: "ai-dispatch", label: "AI Dispatch" },
@@ -90,8 +90,8 @@ export const PROJECTS: Record<ProjectKey, ProjectDetail> = {
     logo: "overture",
     title: "Overture Maps",
     description: [
-      "Co-led the data ingestion pipeline that powers the Overture Maps Foundation's open base map — the next-generation, openly licensed map data used by AWS, Microsoft, Meta, and TomTom.",
-      "Designed for planet-scale: hundreds of millions of features, complex conflation across providers, reproducible builds.",
+      "Co-led the data ingestion pipeline behind the Overture Maps Foundation's open base map — an openly licensed dataset powering routing and location intelligence at *planet scale*.",
+      "Engineered for complex conflation across providers and reproducible builds.",
     ],
     usedBy: [
       { label: "Microsoft", weight: 400 },
@@ -104,8 +104,8 @@ export const PROJECTS: Record<ProjectKey, ProjectDetail> = {
     caption: "TomTom · Project",
     title: "Orbis Maps",
     description: [
-      "Centimeter-precision HD mapping software for automotive and mobility partners. High-throughput map processing and updates at scale, powering self-driving features in production fleets.",
-      "Engineered around continuous map freshness, lane-level accuracy, and reliability requirements that automotive customers need to ship safely.",
+      "Centimetre-accurate (HD) mapping software for automotive and mobility partners — processing *tens of billions* of road segments and nodes with high-throughput updates, powering self-driving features in production fleets.",
+      "Engineered around continuous map freshness, lane-level accuracy, and the reliability automotive customers need to ship safely.",
     ],
     usedBy: [
       { label: "Uber", weight: 700 },
@@ -121,8 +121,8 @@ export const PROJECTS: Record<ProjectKey, ProjectDetail> = {
     caption: "Motorola Solutions · Project",
     title: "AI Emergency Dispatch",
     description: [
-      "Built into CommandCentral Aware: voice-recognition pipeline that transcribes 911 calls into actionable data, boosting response times and accuracy for US public safety agencies.",
-      "Production-grade speech, real-time transcription, and structured event extraction designed for the operational tempo of a 911 floor.",
+      "Voice-recognition pipeline integrated into CommandCentral Aware — transcribing live 911 calls into structured, actionable data at *over 1,000 req/s* under a *sub-150ms response-time SLA*.",
+      "Real-time transcription and structured event extraction designed for the operational tempo of a 911 floor — boosting dispatch time and accuracy.",
     ],
     usedBy: [{ label: "US Public Safety", weight: 600 }],
     reference: {
@@ -134,8 +134,8 @@ export const PROJECTS: Record<ProjectKey, ProjectDetail> = {
     caption: "Motorola Solutions · Architecture",
     title: "Geo-redundant Architecture",
     description: [
-      "Multi-region architecture for mission-critical 911 systems — engineered for data integrity, minimal latency, and graceful failover under load.",
-      "Owned production reliability via 24/7 on-call rotations, with quick alert response and root-cause discipline minimizing downtime.",
+      "Multi-region architecture for mission-critical 911 systems delivering *99.99% availability* (only *~52 min downtime/year*), preserving data integrity and *event ordering* under regional failover.",
+      "Owned production reliability via 24/7 on-call rotations — rapid alert response and root-cause discipline minimizing downtime.",
     ],
     usedBy: [{ label: "US Public Safety", weight: 600 }],
   },
@@ -143,9 +143,9 @@ export const PROJECTS: Record<ProjectKey, ProjectDetail> = {
     caption: "Motorola Solutions · Compliance",
     title: "FedRAMP Compliance",
     description: [
-      "Contributed to secure software solutions for U.S. security forces under FedRAMP authorization — top-tier data protection, auditing, and operational efficiency.",
-      "Worked across hardening, access controls, and audit trails required to meet federal cloud security baselines.",
+      "Delivered security controls — data handling, audit trails, access — meeting the *US federal* FedRAMP standard required for sensitive federal cloud workloads.",
+      "Hardening, access management, and audit trails to meet federal cloud security baselines.",
     ],
-    usedBy: [{ label: "US Public Safety", weight: 600 }],
+    usedBy: [{ label: "US Federal", weight: 700 }],
   },
 };

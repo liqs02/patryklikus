@@ -34,33 +34,48 @@ export default function Beyond() {
       />
       <div className="relative mx-auto flex min-h-screen max-w-[1500px] flex-col px-12 pt-[10vh] pb-14 xl:px-20">
         <div className="max-w-[700px]">
-          <motion.div
-            {...a(0.1)}
-            className="flex items-center gap-3 text-[11px] tracking-[0.3em] uppercase"
-          >
-            <span className="text-[var(--color-amber)]">{COPY.eyebrow}</span>
-            <span aria-hidden className="h-px w-10 bg-[var(--color-amber)]/40" />
-            <span className="text-[#64748b]">{COPY.counter}</span>
-          </motion.div>
           <motion.h2
             {...a(0.15)}
-            className="mt-5 text-[64px] font-bold leading-[1.02] tracking-[-0.02em] text-[var(--color-text)]"
+            className="text-[64px] font-bold leading-[1.02] tracking-[-0.02em] text-[var(--color-text)]"
           >
             {COPY.titleStart}<span className="text-[var(--color-amber)]">{COPY.titleAccent}</span>{COPY.titleEnd}
           </motion.h2>
-          <AccentUnderline
-            inView={inView}
-            className="mt-4 h-[3px] w-[88px] rounded-sm bg-[var(--color-amber)]"
-          />
-          <motion.p
-            {...a(0.35)}
-            className="mt-4 text-[15px] text-[var(--color-muted)]"
-          >
-            {COPY.subtitle}
-          </motion.p>
         </div>
 
         <div className="mt-12 flex flex-1 flex-col justify-center">
+          <div className="mx-auto mb-6 w-full max-w-[1200px]">
+            <motion.div
+              {...a(0.18)}
+              className="h-px"
+              style={{
+                background:
+                  "linear-gradient(to right, transparent, rgba(148,163,184,0.22) 8%, rgba(148,163,184,0.22) 92%, transparent)",
+              }}
+            />
+            <div className="grid grid-cols-3 gap-6">
+              {THEMES.map((t, i) => (
+                <motion.div
+                  key={`rail-${t.id}`}
+                  {...a(0.22 + i * 0.06)}
+                  className="flex flex-col items-center"
+                >
+                  <span
+                    className="-mt-[5px] h-[10px] w-[10px] rounded-full"
+                    style={{
+                      backgroundColor: t.accent,
+                      boxShadow: `0 0 4px ${t.accent}, 0 0 12px ${t.accent}aa, 0 0 24px ${t.accent}55`,
+                    }}
+                  />
+                  <span
+                    className="mt-2 h-10 w-px"
+                    style={{
+                      background: `linear-gradient(to bottom, ${t.accent}88, transparent)`,
+                    }}
+                  />
+                </motion.div>
+              ))}
+            </div>
+          </div>
           <div className="mx-auto w-full max-w-[1200px]">
             <div className="grid grid-cols-3 gap-6">
               {THEMES.map((t, i) => (

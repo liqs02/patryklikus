@@ -4,7 +4,7 @@ const SECTIONS = [
   { id: "hero", label: "Hero", color: "#10b981", glow: "rgba(16,185,129,0.5)" },
   { id: "experience", label: "Experience", color: "#10b981", glow: "rgba(16,185,129,0.5)" },
   { id: "beyond", label: "Beyond", color: "#f59e0b", glow: "rgba(245,158,11,0.5)" },
-  { id: "impact", label: "Impact", color: "#a78bfa", glow: "rgba(167,139,250,0.5)" },
+  { id: "research", label: "Research", color: "#a78bfa", glow: "rgba(167,139,250,0.5)" },
 ];
 
 export default function SectionDots() {

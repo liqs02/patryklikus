@@ -1,7 +1,12 @@
 export const NAME = "Patryk Likus";
 export const ROLE = "Software Engineer";
-export const TAGLINE =
-  "Building data-heavy systems, from global maps to emergency dispatch.";
+export const TAGLINE_PARTS = [
+  { text: "Building planet-scale systems used at " },
+  { text: "Microsoft, Meta, Amazon,", emphasis: true },
+  { text: " and " },
+  { text: "Uber", emphasis: true },
+  { text: "." },
+] as const;
 
 export const SKILLS_DESKTOP = [
   "Java",

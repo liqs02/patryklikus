@@ -10,7 +10,7 @@ import {
   NAME,
   ROLE,
   SKILLS_DESKTOP,
-  TAGLINE,
+  TAGLINE_PARTS,
 } from "./data";
 
 const NAME_CONTAINER = {
@@ -97,7 +97,15 @@ export default function LeftPanel() {
           {...slideIn(0.78)}
           className="mt-6 max-w-[560px] text-[17px] leading-snug text-[var(--color-muted)]"
         >
-          {TAGLINE}
+          {TAGLINE_PARTS.map((part, i) =>
+            part.emphasis ? (
+              <span key={i} className="font-semibold text-[var(--color-ink)]">
+                {part.text}
+              </span>
+            ) : (
+              part.text
+            ),
+          )}
         </motion.p>
 
         <motion.ul

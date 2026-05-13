@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import AccentUnderline from "../../components/AccentUnderline";
 import { EASE, fadeIn, useSectionInView } from "../../lib/motion";
 import { formatLong } from "../../lib/format";
 import { COPY, RECOMMENDATIONS_HREF, THEMES } from "./data";

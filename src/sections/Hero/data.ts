@@ -1,12 +1,15 @@
 export const NAME = "Patryk Likus";
 export const ROLE = "Software Engineer";
-export const TAGLINE_PARTS = [
+export const TAGLINE_PARTS: ReadonlyArray<{
+  text: string;
+  emphasis?: boolean;
+}> = [
   { text: "Building planet-scale systems used at " },
   { text: "Microsoft, Meta, Amazon,", emphasis: true },
   { text: " and " },
   { text: "Uber", emphasis: true },
   { text: "." },
-] as const;
+];
 
 export const SKILLS_DESKTOP = [
   "Java",

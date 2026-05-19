@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  html, body { margin: 0; padding: 0; background: #0a0a0f; }
+  body {
+    width: 1200px;
+    height: 630px;
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+    font-feature-settings: "cv11", "ss01", "ss03";
+    color: #f8fafc;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Beyond-style 3-color glow palette: emerald + amber + violet, all subtle */
+  .mesh {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 18% 72%, rgba(16,185,129,0.15), transparent 42%),
+      radial-gradient(circle at 50% 72%, rgba(245,158,11,0.13), transparent 42%),
+      radial-gradient(circle at 82% 72%, rgba(167,139,250,0.17), transparent 42%),
+      linear-gradient(to bottom, rgba(8,10,16,0.65) 0%, rgba(8,10,16,0.30) 40%, rgba(0,0,0,0.15) 100%);
+  }
+
+  .hairline {
+    position: absolute;
+    left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #1e293b, transparent);
+  }
+  .hairline.top { top: 0; }
+  .hairline.bottom { bottom: 0; }
+
+  /* Subtle grain kills gradient banding */
+  .grain {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+    opacity: 0.06;
+  }
+  .grain svg { width: 100%; height: 100%; display: block; }
+
+  .content {
+    position: absolute;
+    left: 80px;
+    top: 50%;
+    transform: translateY(-50%);
+    max-width: 1040px;
+  }
+
+  h1 {
+    margin: 0;
+    font-family: "Inter Tight", "Inter", system-ui, sans-serif;
+    font-size: 118px;
+    font-weight: 700;
+    letter-spacing: -0.045em;
+    line-height: 1;
+    color: #f8fafc;
+    text-shadow: 0 0 32px rgba(248,250,252,0.10);
+  }
+  h1 .tld {
+    color: #10b981;
+    font-weight: 600;
+    font-size: 0.5em;
+    letter-spacing: -0.02em;
+    margin-left: 6px;
+    text-shadow:
+      0 0 10px rgba(16,185,129,0.30),
+      0 0 22px rgba(16,185,129,0.10);
+  }
+
+  .tagline {
+    margin-top: 40px;
+    font-size: 32px;
+    line-height: 1.35;
+    color: #cbd5e1;
+    letter-spacing: -0.015em;
+    max-width: 1080px;
+  }
+  .tagline b {
+    color: #f8fafc;
+    font-weight: 600;
+    text-shadow: 0 0 10px rgba(248,250,252,0.18);
+  }
+</style>
+</head>
+<body>
+  <div class="mesh"></div>
+  <div class="grain" aria-hidden="true">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" preserveAspectRatio="none">
+      <filter id="n">
+        <feTurbulence type="fractalNoise" baseFrequency="2.4" numOctaves="2" stitchTiles="stitch"/>
+        <feColorMatrix values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.4 0"/>
+      </filter>
+      <rect width="100%" height="100%" filter="url(#n)" />
+    </svg>
+  </div>
+  <div class="hairline top"></div>
+  <div class="hairline bottom"></div>
+
+  <div class="content">
+    <h1>Patryk Likus<span class="tld">.com</span></h1>
+    <div class="tagline">
+      Building planet-scale systems used by <b>Microsoft</b>, <b>Meta</b>, <b>Amazon</b>,<br/>
+      <b>Uber</b>, and <b>US Federal</b>.
+    </div>
+  </div>
+</body>
+</html>
